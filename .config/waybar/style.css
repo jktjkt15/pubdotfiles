@@ -1,0 +1,59 @@
+* {
+  border: none;
+  border-radius: 0px;
+  font-family: "CaskaydiaMono Nerd Font Mono";
+  font-size: 14px;
+  min-height: 20px;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+#workspaces {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: none;
+  margin-left: 5px;
+}
+
+#workspaces button {
+  color: #5a84e5;
+  background: #1f2228;
+  border-radius: 10px;
+  margin-right: 8px;
+  opacity: 0.8;
+}
+
+#workspaces button.active {
+  color: #f2f3f3;
+}
+
+#cpu,
+#memory,
+#pulseaudio,
+#tray,
+#window,
+#custom-hostname,
+#clock {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: red;
+  border-radius: 10px;
+  border-color: red;
+  color: #5a84e5;
+  background: #1f2228;
+  padding: 10px;
+  opacity: 0.8;
+}
+
+#tray {
+  margin-right: 10px;
+}
+
+#custom-hostname {
+  margin-left: 10px;
+}
