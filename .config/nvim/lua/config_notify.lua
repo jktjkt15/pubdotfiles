@@ -5,7 +5,10 @@ notify.setup({
 	content = {
 		-- Function which formats the notification message
 		-- By default prepends message with notification time
-		format = nil,
+		format = function(notif)
+			local time = vim.fn.strftime("%H:%M:%S", math.floor(notif.ts_update))
+			return string.format(" %s │ %s ", time, notif.msg)
+		end,
 
 		-- Function which orders notification array from most to least important
 		-- By default orders first by level and then by update timestamp
@@ -30,7 +33,7 @@ notify.setup({
 		},
 
 		-- Value of 'winblend' option
-		-- winblend = 25,
+		winblend = 0,
 	},
 })
 

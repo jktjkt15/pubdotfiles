@@ -1,4 +1,7 @@
-vim.g.jayTodos = {}
+vim.g.jayTodos = {
+	"styling prompt / wezterm",
+	"dmenu app styling",
+}
 
 require("config_options")
 require("config_plugins")
