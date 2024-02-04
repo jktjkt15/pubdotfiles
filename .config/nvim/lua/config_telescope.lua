@@ -5,7 +5,7 @@ local utils = require("telescope.utils")
 local baseThemeOptions = {
 	layout_config = { width = 0.9, height = 0.8 },
 	layout_strategy = "horizontal",
-	file_ignore_patterns = { "obj/*", "dll/*", ".git/*", ".nuget/*" },
+	file_ignore_patterns = { "obj/*", "dll/*", ".git/*", ".nuget/*", "node_modules/*" },
 }
 
 vim.keymap.set("n", "<leader>fcc", function()
