@@ -16,7 +16,7 @@ if status is-interactive
     alias fre='source ~/.config/fish/config.fish'
     alias ev='nvim ~/.config/fish/config.fish'
     alias gs='git status'
-    alias ge='cd ~/Repos'
+    alias ge='cd ~/repos'
     alias y='yazi'
 
     starship init fish | source

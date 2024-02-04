@@ -10,7 +10,8 @@
         //"hyprland/mode",
         //"hyprland/scratchpad",
         "custom/hostname",
-        "custom/media"
+        "custom/media",
+        "custom/roon"
     ],
     "modules-center": [
         "hyprland/workspaces"
@@ -205,6 +206,12 @@
         "format-icons": {
             "spotify": "",
         },
-        "exec": "playerctl metadata --format \"{{ playerName }}: {{ lc(artist) }} - {{ lc(title) }}\""
+        "exec": "[ $(playerctl status) == \"Playing\" ] && playerctl metadata --format \"{{ playerName }}: {{ lc(artist) }} - {{ lc(title) }}\""
+    },
+    "custom/roon": {
+        "format": "roon: {}",
+        "interval": 20,
+        "max-length": 50,
+        "exec": "npm run --prefix \"~/repos/roon/\" start --silent"
     }
 }
