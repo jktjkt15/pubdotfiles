@@ -9,8 +9,8 @@
         // "hyprland/workspaces"
         //"hyprland/mode",
         //"hyprland/scratchpad",
-        //"hyprland/media"
-        "custom/hostname"
+        "custom/hostname",
+        "custom/media"
     ],
     "modules-center": [
         "hyprland/workspaces"
@@ -199,15 +199,12 @@
         "interval": 3600
     },
     "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
+        "format": "{}",
+        "interval": 10,
+        "max-length": 100,
         "format-icons": {
             "spotify": "",
-            "default": "🎜"
         },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "exec": "playerctl metadata --format \"{{ playerName }}: {{ lc(artist) }} - {{ lc(title) }}\""
     }
 }
