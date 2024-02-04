@@ -15,9 +15,7 @@ config.use_fancy_tab_bar = false
 config.enable_tab_bar = false
 config.window_background_opacity = 1
 config.text_background_opacity = 1
-config.colors = {
-	background = "#1f2228",
-}
+config.color_scheme = "jayzone"
 config.default_prog = { "fish" }
 
 config.keys = {

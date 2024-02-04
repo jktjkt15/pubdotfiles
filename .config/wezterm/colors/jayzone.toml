@@ -1,0 +1,36 @@
+[colors]
+ansi = [
+    "#353B45",
+    "#EA708E",
+    "#62EA76",
+    "#FFB65B",
+    "#5A84E5",
+    "#C2A4FF",
+    "#61AFEF",
+    "#F2F3F3",
+]
+background = "#1F2228"
+brights = [
+    "#353B45",
+    "#EA708E",
+    "#62EA76",
+    "#FFB65B",
+    "#5A84E5",
+    "#C2A4FF",
+    "#61AFEF",
+    "#F2F3F3",
+]
+
+cursor_bg = "#A2A9B5"
+cursor_border = "#A2A9B5"
+cursor_fg = "#0F0800"
+foreground = "#F2F3F3"
+scrollbar_thumb = "#1F2228"
+selection_bg = "#565C64"
+selection_fg = "#F2F3F3"
+split = "#FFB65B"
+visual_bell = "#383B35"
+
+[metadata]
+name = 'jayzone'
+author = 'jay'
