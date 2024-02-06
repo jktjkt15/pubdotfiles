@@ -13,5 +13,8 @@ sudo pacman -S --needed --noconfirm cifs-utils dmenu dotnet-sdk exa fd freerdp f
 
 yay -Syu --needed brave-bin discord elixir expressvpn firefox slack-desktop spotify vlc wezterm remmina-git dracula-gtk-theme dracula-icons-git cli-visualizer roon-tui spotify-tui swaylock-effects-git
 
+echo '' >> .bashrc
+echo 'fish' >> .bashrc
+source .bashrc
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 fisher update
