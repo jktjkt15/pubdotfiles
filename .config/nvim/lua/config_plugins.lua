@@ -15,6 +15,17 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{
+		"brenoprata10/nvim-highlight-colors",
+		keys = {
+			{
+				"<leader>cb",
+				function()
+					require("nvim-highlight-colors").toggle()
+				end,
+			},
+		},
+	},
+	{
 		"jlcrochet/vim-razor",
 		ft = { "razor" },
 	},
