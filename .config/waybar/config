@@ -51,7 +51,7 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "format": "{:%Y-%m-%d %H:%M}",
+        "format": "{:%H:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -150,6 +150,6 @@
         "format": "roon: {}",
         "interval": 20,
         "max-length": 50,
-        "exec": "npm run --prefix \"~/repos/roon/\" start --silent"
+        "exec": "npm run --prefix \"~/repos/roon/\" start --silent | awk '{print tolower($0)}'"
     }
 }
