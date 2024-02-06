@@ -7,7 +7,12 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.font = wezterm.font("CaskaydiaMono Nerd Font Mono", { weight = "Regular", stretch = "Normal" })
+config.font = wezterm.font_with_fallback({
+	"CaskaydiaMono Nerd Font Mono",
+	"Noto Color Emoji",
+	"Symbols Nerd Font",
+})
+
 config.font_size = 16
 config.cell_width = 0.9
 
@@ -40,6 +45,16 @@ config.keys = {
 		action = act.SpawnCommandInNewTab({
 			args = { "fish", "-c", "~/Repos/scripts/run.fish" },
 		}),
+	},
+	{
+		key = "u",
+		mods = "CTRL|SHIFT",
+		action = act.ScrollByPage(-0.5)
+	},
+	{
+		key = "d",
+		mods = "CTRL|SHIFT",
+		action = act.ScrollByPage(0.5)
 	},
 }
 
