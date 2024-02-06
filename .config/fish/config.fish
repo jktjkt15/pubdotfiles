@@ -9,6 +9,7 @@ if status is-interactive
 
     set fzf_fd_opts --hidden
     fzf_configure_bindings --directory=\cf
+    fish_vi_key_bindings
 
     alias ls='exa --color=auto --icons'
     alias ll='exa -l --color=auto --icons'
