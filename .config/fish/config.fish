@@ -3,12 +3,17 @@ if status is-interactive
     set -g __fish_git_prompt_show_informative_status 1
     set -g __fish_git_prompt_showupstream verbose
     set -g EDITOR nvim
+
     fish_add_path ~/.local/share/bob/nvim-bin
     fish_add_path ~/.ghcup/bin
+
+    set fzf_fd_opts --hidden
+    fzf_configure_bindings --directory=\cf
 
     alias ls='exa --color=auto --icons'
     alias ll='exa -l --color=auto --icons'
     alias la='exa -la --color=auto --icons'
+    alias lt='exa --tree'
     alias grep='grep --color=auto'
     alias v='nvim'
     #alias vim='nvim'
