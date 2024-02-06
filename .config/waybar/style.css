@@ -21,15 +21,15 @@ window#waybar {
 }
 
 #workspaces button {
-  color: #5a84e5;
+  color: #f2f3f3;
   background: #1f2228;
   border-radius: 10px;
   margin-right: 8px;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 #workspaces button.active {
-  color: #f2f3f3;
+  color: #5a84e5;
 }
 
 #cpu,
@@ -46,10 +46,10 @@ window#waybar {
   color: red;
   border-radius: 10px;
   border-color: red;
-  color: #5a84e5;
+  color: #f2f3f3;
   background: #1f2228;
   padding: 10px;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 #tray {

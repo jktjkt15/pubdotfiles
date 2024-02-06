@@ -32,13 +32,10 @@
         "format-icons": {
             "1": "main",
             "2": "rdp",
-            "3": "",
-            "4": "",
-            "5": "",
-            "6": "vpn",
-            "urgent": "",
-            "focused": "",
-            "default": ""
+            "3": "slack",
+            "4": "music",
+            "5": "discord",
+            "6": "vpn"
         }
     },
     "idle_inhibitor": {
