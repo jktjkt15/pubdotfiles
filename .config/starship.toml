@@ -43,3 +43,5 @@ $container\
 $shell\
 $character"""
 
+[cmd_duration]
+format = '[$duration](bold yellow) '
