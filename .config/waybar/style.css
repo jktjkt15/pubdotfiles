@@ -31,7 +31,6 @@ window#waybar {
 #workspaces button.active {
   background: #ffb65b;
   color: #1f2228;
-  font-weight: bold;
 }
 
 #cpu,
@@ -55,7 +54,6 @@ window#waybar {
 #clock {
   background: #ffb65b;
   color: #1f2228;
-  font-weight: bold;
 }
 
 #tray {
