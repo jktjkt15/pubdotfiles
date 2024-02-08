@@ -1,6 +1,6 @@
 sort=-time
 layer=overlay
-background-color=#353b4544
+background-color=#353b45aa
 width=400
 height=200
 border-size=2
@@ -30,7 +30,7 @@ default-timeout=2000
 group-by=category
 
 [app-name="Slack"]
-background-color=#5a84e544
+background-color=#5a84e5aa
 
 [app-name="notify-send"]
-background-color=#5a84e544
+background-color=#5a84e5aa

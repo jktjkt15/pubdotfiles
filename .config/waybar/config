@@ -51,7 +51,7 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "format": "{:%H:%M}",
+        "format": " {:%H:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -114,7 +114,7 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "vol: {volume}%",
+        "format": " {volume}%",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": "{icon} {format_source}",
         "format-source": "{volume}% ",
@@ -133,18 +133,18 @@
         "on-click": "pavucontrol"
     },
     "custom/hostname": {
-        "format": "{}",
+        "format": " {}",
         "exec": "fish -c 'echo $(whoami)@$hostname'",
         "interval": 3600
     },
     "custom/media": {
-        "format": "{}",
+        "format": " {}",
         "interval": 10,
         "max-length": 100,
         "format-icons": {
             "spotify": "",
         },
-        "exec": "[ $(playerctl status) == \"Playing\" ] && playerctl metadata --format \"{{ playerName }}: {{ lc(artist) }} - {{ lc(title) }}\""
+        "exec": "[ $(playerctl status) == \"Playing\" ] && playerctl metadata --format \"{{ lc(artist) }} - {{ lc(title) }}\""
     },
     "custom/roon": {
         "format": "roon: {}",
