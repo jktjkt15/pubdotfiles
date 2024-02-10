@@ -12,6 +12,7 @@ end, { silent = true })
 
 -- Go-back 1
 vim.keymap.set("n", "-", "<C-6>")
+vim.keymap.set("n", "<C-p>", "<C-6>")
 
 -- Remapping redo
 vim.keymap.set("n", "<leader>u", "<C-r>")
@@ -132,10 +133,10 @@ vim.keymap.set("t", "<C-c>", "<C-n>")
 vim.keymap.set("t", "<C-z>", "<C-c>")
 
 -- Windows navigation
-vim.keymap.set("n", "<C-R>", "<C-w>h")
-vim.keymap.set("n", "<C-S>", "<C-w>j")
-vim.keymap.set("n", "<C-F>", "<C-w>k")
-vim.keymap.set("n", "<C-T>", "<C-w>l")
+vim.keymap.set({ "n", "i" }, "<C-R>", "<C-w>h")
+vim.keymap.set({ "n", "i" }, "<C-S>", "<C-w>j")
+vim.keymap.set({ "n", "i" }, "<C-F>", "<C-w>k")
+vim.keymap.set({ "n", "i" }, "<C-T>", "<C-w>l")
 
 -- Terms buffer start in insert mode
 vim.api.nvim_create_autocmd({ "TermEnter", "TermOpen" }, {

@@ -6,6 +6,7 @@ if status is-interactive
 
     fish_add_path ~/.local/share/bob/nvim-bin
     fish_add_path ~/.ghcup/bin
+    fish_add_path ~/.cargo/bin
 
     set fzf_fd_opts --hidden
     fzf_configure_bindings --directory=\cf
@@ -24,6 +25,8 @@ if status is-interactive
     alias gs='git status'
     alias ge='cd ~/repos'
     alias y='yazi'
+    alias ng="nvim -c 'G' -c 'on'"
 
+    eval "$(ssh-agent -c)" >/dev/null
     starship init fish | source
 end

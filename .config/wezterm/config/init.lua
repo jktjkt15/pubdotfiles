@@ -43,7 +43,7 @@ config.keys = {
 	{
 		key = "F3",
 		action = act.SpawnCommandInNewTab({
-			args = { "fish", "-c", "~/Repos/scripts/run.fish" },
+			args = { "fish", "-c", "~/repos/scripts/run.fish" },
 		}),
 	},
 	{
