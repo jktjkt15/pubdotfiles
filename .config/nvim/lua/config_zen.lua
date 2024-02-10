@@ -23,7 +23,7 @@ require("zen-mode").setup({
 		-- disable some global vim options (vim.o...)
 		-- comment the lines to not apply the options
 		options = {
-			enabled = true,
+			enabled = false,
 			ruler = false, -- disables the ruler text in the cmd line area
 			showcmd = false, -- disables the command in the last line of the screen
 		},
@@ -58,3 +58,25 @@ require("zen-mode").setup({
 	-- callback where you can add custom code when the Zen window closes
 	on_close = function() end,
 })
+
+-- Zen Mode
+local currentZenIndex = 0
+local zenToggles = { 0.9, 0.55 }
+
+local function toggleZen(width)
+	local ok, zen = pcall(require, "zen-mode")
+	if ok then
+		zen.toggle({
+			window = {
+				width = width,
+			},
+		})
+	end
+end
+
+vim.keymap.set("n", "<leader>zz", function()
+	toggleZen(zenToggles[currentZenIndex + 1])
+end)
+vim.keymap.set("n", "<leader>zt", function()
+	currentZenIndex = (currentZenIndex + 1) % #zenToggles
+end)

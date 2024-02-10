@@ -36,7 +36,7 @@ end
 
 local function LspInfo()
 	local bufnr = vim.api.nvim_get_current_buf()
-	local activeClients = vim.lsp.get_active_clients({ bufnr = bufnr })
+	local activeClients = vim.lsp.get_clients({ bufnr = bufnr })
 
 	local res = vim.tbl_map(function(t)
 		return t.name:gsub("[-_].*", ""):sub(1, 4)
@@ -61,16 +61,6 @@ local function Todos()
 	return " " .. resultMessage
 end
 
--- local function InSnippet()
--- 	local ls = require("luasnip")
---
--- 	if ls.in_snippet() then
--- 		return ""
--- 	end
---
--- 	return ""
--- end
-
 local function CurrentWorkspace()
 	local loaded, ws = pcall(require, "workspaces")
 
@@ -89,6 +79,9 @@ local function CurrentWorkspace()
 
 	return "󰷚 " .. result
 end
+
+local jayzoneColors = require("jayzone.colors").getColorScheme(vim.g.colors_name)
+-- print(vim.inspect(jayzoneColors))
 
 local function ParseJsonPath()
 	local ok, jsonPath = pcall(require, "jsonpath")
@@ -123,6 +116,10 @@ local function TreesitterContext()
 	})
 
 	if context ~= nil and context ~= "" then
+		local maxLength = 50
+		if #context > maxLength then
+			context = context:sub(0, maxLength) .. "..."
+		end
 		return "󰊕 " .. context
 	end
 
@@ -137,7 +134,6 @@ local function GetYamlSchemaName()
 	return "󰉪 " .. schema.result[1].name
 end
 
-local jayzoneColors = require("jayzone.colors")
 require("lualine").setup({
 	options = {
 		theme = require("jayzone.lualine"),
@@ -161,6 +157,28 @@ require("lualine").setup({
 					return str:sub(1, 20)
 				end,
 			},
+			{
+				function()
+					local result = require("config_worktrees").CurrentWorktree()
+
+					if result == "" then
+						return ""
+					end
+
+					return "  " .. result
+				end,
+			},
+			{
+				function()
+					local result = require("config_monorepo").GetCurrentSubRepo()
+
+					if result == "" then
+						return ""
+					end
+
+					return "  " .. result
+				end,
+			},
 		},
 		lualine_c = {
 			"diff",
@@ -170,16 +188,28 @@ require("lualine").setup({
 				always_visible = false,
 				sources = { FilteredDiags },
 			},
-			Todos,
+			-- Todos,
+			-- {
+			-- 	function()
+			-- 		return require("config_coverage").getCurrentCoverageJson()
+			-- 	end,
+			-- },
 			MacroDisplay,
 		},
 		lualine_x = {
+			{
+				function()
+					local time = require("lazy").stats().startuptime
+					return string.format("startup: %.1f ms", time)
+				end,
+			},
 			"searchcount",
 			{
 				CurrentWorkspace,
 				color = { fg = jayzoneColors.blue },
 			},
 			GetYamlSchemaName,
+			"encoding",
 			"filetype",
 		},
 		lualine_y = {
@@ -199,11 +229,24 @@ require("lualine").setup({
 	},
 	winbar = {
 		lualine_a = {},
-		lualine_b = { CurrentWorkspace },
-		lualine_c = {
+		lualine_c = {},
+		lualine_b = {
+			{
+				function()
+					if os.getenv("SSH_TTY") ~= nil then
+						return "SSH: " .. vim.fn.hostname()
+					end
+					return ""
+				end,
+				color = { fg = jayzoneColors.white },
+			},
+			{
+				CurrentWorkspace,
+				color = { fg = jayzoneColors.white },
+			},
 			{
 				TreesitterContext,
-				color = { fg = jayzoneColors.blue },
+				color = { fg = jayzoneColors.white },
 			},
 		},
 		lualine_x = {

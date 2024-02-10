@@ -9,7 +9,7 @@ harpoon:setup({
 	},
 	settings = {
 		save_on_toggle = true,
-		sync_on_ui_close = false,
+		sync_on_ui_close = true,
 		key = function()
 			return vim.loop.cwd()
 		end,
@@ -21,11 +21,11 @@ map({ "t", "n" }, "<leader>a", function()
 end, opts)
 
 map({ "n" }, "<leader>xa", function()
-	harpoon:list():append()
+	harpoon:list():add()
 end, opts)
 
 map({ "n" }, "<leader>xx", function()
-	harpoon:list():prev()
+	harpoon:list():prev({ ui_nav_wrap = true })
 end, opts)
 
 for i = 1, 9 do

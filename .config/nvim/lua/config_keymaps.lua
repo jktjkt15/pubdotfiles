@@ -3,7 +3,7 @@ vim.keymap.set("n", "<leader>w", ":silent w<CR>")
 
 -- Centered Scroll
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-U>", "<C-U>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Explorer .
 vim.keymap.set("n", "<leader>ex", function()
@@ -12,12 +12,13 @@ end, { silent = true })
 
 -- Go-back 1
 vim.keymap.set("n", "-", "<C-6>")
+vim.keymap.set("n", "<C-p>", "<C-6>")
 
 -- Remapping redo
 vim.keymap.set("n", "<leader>u", "<C-r>")
 
 -- Clear highlights
-vim.keymap.set("n", "<leader>nh", "<cmd>nohl<cr>")
+-- vim.keymap.set("n", "<leader>nh", "<cmd>nohl<cr>")
 vim.keymap.set("n", "<Esc>", "<cmd>nohl<cr>")
 
 -- CamelMotions
@@ -74,14 +75,14 @@ vim.keymap.set("n", "<leader>o", vim.cmd.Oil)
 
 -- Inlay hints
 vim.keymap.set("n", "<leader>si", function()
-	vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggle inlay hints" })
 
--- Breathing room
-vim.keymap.set("n", "<leader>bb", "mzo<esc>`z")
-vim.keymap.set("n", "<leader>B", "mzO<esc>`z")
-vim.keymap.set("n", "<leader>bi", "i <esc><Right>")
-vim.keymap.set("n", "<leader>ba", "a <esc><Left>")
+-- -- Breathing room
+-- vim.keymap.set("n", "<leader>bb", "mzo<esc>`z")
+-- vim.keymap.set("n", "<leader>B", "mzO<esc>`z")
+-- vim.keymap.set("n", "<leader>bi", "i <esc><Right>")
+-- vim.keymap.set("n", "<leader>ba", "a <esc><Left>")
 
 -- Swapping windows
 local function swapper()
@@ -109,17 +110,18 @@ vim.keymap.set("n", "<leader>sw", layoutToggle)
 vim.keymap.set("n", "<leader>ss", swapper)
 
 -- M to cut rest of line
-vim.keymap.set("n", "M", "D")
+-- vim.keymap.set("n", "M", "D")
 
 -- Quick access
 vim.keymap.set("n", "<leader>el", ":e ~/.config/nvim/lua/init.lua<cr>")
 vim.keymap.set("n", "<leader>sc", ":w<cr>:so %<cr>")
 
 -- Exit
-vim.keymap.set({ "n", "t" }, "<F4>", "<cmd>qa<cr>")
+-- vim.keymap.set({ "n", "t" }, "<F4>", "<cmd>qa<cr>")
 
 -- Term promt
-vim.keymap.set("n", "<leader>d", ":sp|te ")
+-- vim.keymap.set("n", "<leader>d", ":sp|te ")
+
 -- Terminal Helpers
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("t", "<C-v><Esc>", "<Esc>")
@@ -132,13 +134,13 @@ vim.keymap.set("t", "<C-c>", "<C-n>")
 vim.keymap.set("t", "<C-z>", "<C-c>")
 
 -- Windows navigation
-vim.keymap.set("n", "<C-R>", "<C-w>h")
-vim.keymap.set("n", "<C-S>", "<C-w>j")
-vim.keymap.set("n", "<C-F>", "<C-w>k")
-vim.keymap.set("n", "<C-T>", "<C-w>l")
+vim.keymap.set({ "n", "i" }, "<C-R>", "<C-w>h")
+vim.keymap.set({ "n", "i" }, "<C-S>", "<C-w>j")
+vim.keymap.set({ "n", "i" }, "<C-F>", "<C-w>k")
+vim.keymap.set({ "n", "i" }, "<C-T>", "<C-w>l")
 
 -- Terms buffer start in insert mode
-vim.api.nvim_create_autocmd({ "TermEnter", "TermOpen" }, {
+vim.api.nvim_create_autocmd({ "TermEnter", "TermOpen", "BufEnter" }, {
 	group = vim.api.nvim_create_augroup("term_setting", { clear = true }),
 	pattern = "term://*",
 	command = "startinsert",
@@ -146,16 +148,20 @@ vim.api.nvim_create_autocmd({ "TermEnter", "TermOpen" }, {
 
 -- Next diagnostic
 vim.keymap.set("n", "jd", function()
-	vim.diagnostic.goto_next()
+	local ok, diag = pcall(vim.diagnostic.get_next)
+
+	if ok and diag ~= nil then
+		vim.api.nvim_win_set_cursor(0, { diag.lnum + 1, diag.col })
+	end
+	-- print(vim.inspect(diag))
 end)
 
 vim.keymap.set("n", "jD", function()
-	vim.diagnostic.goto_prev()
-end)
+	local ok, diag = pcall(vim.diagnostic.get_prev)
 
--- Telescope
-vim.keymap.set("n", "<leader>ft", function()
-	vim.cmd.Telescope()
+	if ok and diag ~= nil then
+		vim.api.nvim_win_set_cursor(0, { diag.lnum + 1, diag.col })
+	end
 end)
 
 -- LSP
@@ -200,80 +206,3 @@ local function OpenUrl()
 end
 
 vim.keymap.set("v", "gx", OpenUrl)
-
--- Zen Mode
-local currentZenIndex = 0
-local zenToggles = { 0.55, 0.8 }
-
-local function toggleZen(width)
-	local ok, zen = pcall(require, "zen-mode")
-	if ok then
-		zen.toggle({
-			window = {
-				width = width,
-			},
-		})
-	end
-end
-
-vim.keymap.set("n", "<leader>zz", function()
-	toggleZen(zenToggles[currentZenIndex + 1])
-end)
-vim.keymap.set("n", "<leader>zt", function()
-	currentZenIndex = (currentZenIndex + 1) % #zenToggles
-end)
-
--- JayReplace Mode
-function _G.__JayReplace(motion)
-	if motion == nil then
-		vim.o.operatorfunc = "v:lua.__JayReplace"
-		return "g@"
-	end
-
-	local range = {
-		starting = vim.api.nvim_buf_get_mark(0, "["),
-		ending = vim.api.nvim_buf_get_mark(0, "]"),
-	}
-
-	local contentToPaste = vim.fn.getreg("+", true, true)
-
-	vim.api.nvim_buf_set_text(
-		0,
-		range.starting[1] - 1,
-		range.starting[2],
-		range.ending[1] - 1,
-		range.ending[2] + 1,
-		contentToPaste
-	)
-end
-
-function _G.__JayReplaceLine(motion)
-	if motion == nil then
-		vim.o.operatorfunc = "v:lua.__JayReplaceLine"
-		return "g@l"
-	end
-
-	local contentToPaste = vim.fn.getreg("+", true, true)
-
-	local pos = vim.fn.getpos(".")
-
-	vim.api.nvim_buf_set_lines(0, pos[2] - 1, pos[2], true, contentToPaste)
-end
-
-function _G.__JayReplaceEndOfLine(motion)
-	if motion == nil then
-		vim.o.operatorfunc = "v:lua.__JayReplaceEndOfLine"
-		return "g@l"
-	end
-
-	local contentToPaste = vim.fn.getreg("+", true, true)
-
-	local pos = vim.fn.getpos(".")
-
-	vim.api.nvim_buf_set_text(0, pos[2] - 1, pos[3] - 1, pos[2] - 1, -1, contentToPaste)
-end
-
-vim.keymap.set("n", "rl", "r")
-vim.keymap.set("n", "rr", _G.__JayReplaceLine, { expr = true, remap = false })
-vim.keymap.set("n", "r", _G.__JayReplace, { expr = true })
-vim.keymap.set("n", "R", _G.__JayReplaceEndOfLine, { expr = true })

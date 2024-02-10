@@ -3,20 +3,45 @@ local conform = require("conform")
 conform.setup({
 	-- Conform will run multiple formatters sequentially
 	-- Use a sub-list to run only the first available formatter
+	formatters = {
+		custom_csharpier = {
+			command = "dotnet-csharpier",
+			args = function(self, ctx)
+				local basePath = require("conform.util").root_file({ ".csharpierrc.yaml" })(self, ctx)
+				local configPath = basePath .. "/.csharpierrc.yaml"
+
+				return { "--write-stdout", "--fast", "--config-path", configPath }
+			end,
+			stdin = true,
+		},
+		custom_fantomas = {
+			command = "dotnet",
+			args = function()
+				return { "fantomas", "$FILENAME" }
+			end,
+			stdin = false,
+		},
+	},
 	formatters_by_ft = {
 		lua = { "stylua" },
-		cs = { "csharpier" },
+		cs = { "custom_csharpier" },
 		fish = { "fish_indent" },
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },
 		css = { "prettierd" },
+		go = { "gofmt" },
+		fsharp = { "fantomas" },
+		-- xml = { "xmlformat" },
+		json = { "prettierd" },
+		haskell = { "fourmolu" },
 	},
 	format_on_save = {
-		timeout_ms = 2500,
+		timeout_ms = 20000,
 		lsp_fallback = false,
 	},
 	-- format_after_save = {
 	-- 	lsp_fallback = false,
+	-- 	-- async = true,
 	-- },
 })
 
@@ -57,5 +82,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 				end
 			end
 		end)
+		-- vim.api.nvim_feedkeys("zz", "m", false)
 	end,
 })

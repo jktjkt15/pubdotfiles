@@ -1,12 +1,10 @@
 vim.cmd([[syntax on]])
-vim.cmd([[set clipboard=unnamedplus]])
 vim.cmd([[set mouse=]])
 
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 2
 vim.g.loaded_netrwPlugin = 1
-vim.g.vimwiki_hl_headers = 1
 vim.opt.termguicolors = true
 vim.opt.laststatus = 3
 vim.opt.number = true
@@ -42,7 +40,8 @@ vim.opt.scrolloff = 8
 vim.opt.re = 0
 vim.opt.fillchars = "eob: "
 vim.opt.title = true
-vim.opt.titlestring = " Neovim "
+vim.opt.titlestring = "Neovim"
+
 vim.opt.diffopt = { "internal", "vertical", "closeoff", "filler" }
 vim.opt.shm:append("I")
 
@@ -55,5 +54,4 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 })
 
 vim.opt.shell = "fish"
-
 vim.opt.guicursor = "n-v-c-sm:block-nCursor,i-ci-ve:ver25,r-cr-o:hor20"

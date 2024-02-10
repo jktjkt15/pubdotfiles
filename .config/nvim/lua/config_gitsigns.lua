@@ -37,31 +37,31 @@ gs.setup({
 		row = 0,
 		col = 1,
 	},
-	yadm = {
-		enable = false,
-	},
+	-- yadm = {
+	-- 	enable = false,
+	-- },
 })
 
 -- Navigation
-vim.keymap.set("n", "<leader>jh", function()
+vim.keymap.set("n", "jh", function()
 	if vim.wo.diff then
-		return "<leader>jh"
+		return "jh"
 	end
 	vim.schedule(function()
 		gs.next_hunk()
 	end)
 	return "<Ignore>"
-end, { expr = true })
+end, { expr = true, desc = "Goto next hunk" })
 
-vim.keymap.set("n", "<leader>jH", function()
+vim.keymap.set("n", "jH", function()
 	if vim.wo.diff then
-		return "<leader>jH"
+		return "jH"
 	end
 	vim.schedule(function()
 		gs.prev_hunk()
 	end)
 	return "<Ignore>"
-end, { expr = true })
+end, { expr = true, desc = "Goto previous hunk" })
 
 -- Actions
 vim.keymap.set("n", "<leader>hs", gs.stage_hunk)

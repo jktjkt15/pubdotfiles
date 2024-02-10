@@ -1,7 +1,8 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
-format = """$username\
+
+format = """[╭─](blue bold) $username\
 $hostname\
 $localip\
 $shlvl\
@@ -35,6 +36,7 @@ $env_var\
 $custom\
 $sudo\
 $cmd_duration\
+$line_break[╰─](blue bold)\
 $jobs\
 $time\
 $status\
@@ -45,3 +47,21 @@ $character"""
 
 [cmd_duration]
 format = '[$duration](bold yellow) '
+show_milliseconds = true
+min_time = 0
+
+[hostname]
+ssh_symbol = '󰢹 '
+format = '[$ssh_symbol$hostname]($style) '
+style = 'blue'
+
+[username]
+format = '[$user]($style) '
+style_user = 'purple'
+
+[status]
+style = 'fg:red'
+symbol = '🔴 '
+format = '[-\[$status\]]($style) '
+map_symbol = true
+disabled = false

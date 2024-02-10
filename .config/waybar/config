@@ -1,9 +1,9 @@
 {
     "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 40, // Waybar height (to be removed for auto height)
+    "height": 20, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 8, // Gaps between modules (4px)
+    "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         // "hyprland/workspaces"
@@ -11,22 +11,32 @@
         //"hyprland/scratchpad",
         "custom/hostname",
         "custom/media",
-        "custom/roon"
+        "custom/roon",
+        "hyprland/window",
+        "custom/slack",
     ],
     "modules-center": [
         "hyprland/workspaces"
     ],
     "modules-right": [
-        "pulseaudio",
+        "custom/workvpn",
+        "custom/homevpn",
+        //"custom/wgvpn",
+        "custom/audioname",
+        "custom/volume",
         "cpu",
         "memory",
-        "clock",
-        "tray"
+        "custom/disk",
+        "custom/clock" //,
+        //"tray"
     ],
+    "hyprland/window": {
+        "max-length": 50
+    },
     // Modules configuration
     "hyprland/workspaces": {
         "disable-scroll": true,
-        "all-outputs": true,
+        "all-outputs": false,
         "warp-on-scroll": false,
         "format": " {name}: {icon} ",
         "format-icons": {
@@ -34,8 +44,11 @@
             "2": "rdp",
             "3": "slack",
             "4": "music",
-            "5": "discord",
+            "5": "browser",
             "6": "vpn"
+        },
+        "persistent-workspaces": {
+            "9": []
         }
     },
     "idle_inhibitor": {
@@ -50,8 +63,9 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
-        "format": " {:%H:%M}",
+        "timezone": "Canada/Eastern",
+        "interval": 1,
+        "format": "{:%Y-%m-%d %H:%M:%S}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -114,7 +128,7 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": " {volume}%",
+        "format": "vol: {volume}%",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": "{icon} {format_source}",
         "format-source": "{volume}% ",
@@ -140,16 +154,56 @@
     "custom/media": {
         "format": " {}",
         "interval": 10,
-        "max-length": 100,
+        "max-length": 50,
         "format-icons": {
-            "spotify": "",
+            "spotify": ""
         },
-        "exec": "[ $(playerctl status) == \"Playing\" ] && playerctl metadata --format \"{{ lc(artist) }} - {{ lc(title) }}\""
+        "exec": "fish ~/repos/scripts/spotify_name.fish"
     },
     "custom/roon": {
         "format": "roon: {}",
         "interval": 20,
         "max-length": 50,
         "exec": "npm run --prefix \"~/repos/roon/\" start --silent | awk '{print tolower($0)}'"
+    },
+    "custom/workvpn": {
+        "format": "{}",
+        "interval": 20,
+        "exec": "fish ~/repos/scripts/workvpn_status.fish"
+    },
+    "custom/homevpn": {
+        "format": "{}",
+        "interval": 20,
+        "exec": "fish ~/repos/scripts/homevpn_status.fish"
+    },
+    "custom/wgvpn": {
+        "format": "{}",
+        "interval": 20,
+        "exec": "fish ~/repos/scripts/wgvpn_status.fish"
+    },
+    "custom/audioname": {
+        "format": "{}",
+        "interval": 20,
+        "exec": "fish ~/repos/scripts/audio_name.fish"
+    },
+    "custom/slack": {
+        "format": "slack: {} message(s)",
+        "interval": 20,
+        "exec": "fish ~/repos/scripts/slack.fish"
+    },
+    "custom/disk": {
+        "format": "dsk: {}%",
+        "interval": 120,
+        "exec": "fish ~/repos/scripts/disk_space.fish"
+    },
+    "custom/clock": {
+        "format": "{}",
+        "interval": 1,
+        "exec": "date +\"%Y-%m-%d %H:%M:%S\"",
+    },
+    "custom/volume": {
+        "format": "vol: {}",
+        "interval": 30,
+        "exec": "fish ~/repos/scripts/get_volume.fish",
     }
 }

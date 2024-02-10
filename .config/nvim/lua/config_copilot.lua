@@ -1,6 +1,6 @@
 require("copilot").setup({
 	panel = {
-		enabled = true,
+		enabled = false,
 		auto_refresh = false,
 		keymap = {
 			jump_prev = "[[",
@@ -15,16 +15,16 @@ require("copilot").setup({
 		},
 	},
 	suggestion = {
-		enabled = true,
+		enabled = false,
 		auto_trigger = false,
 		debounce = 75,
 		keymap = {
-			accept = "<M-l>",
+			accept = "<C-n>",
 			accept_word = false,
 			accept_line = false,
-			next = "<leader>js",
-			prev = "<leader>jS",
-			dismiss = "<C-]>",
+			next = "<C-a>",
+			prev = "<C-b>",
+			dismiss = "<C-q>",
 		},
 	},
 	filetypes = {
@@ -42,8 +42,16 @@ require("copilot").setup({
 	server_opts_overrides = {},
 })
 
+local toggleCopilot = false
+
 vim.keymap.set("n", "<leader>co", function()
-	vim.cmd({ cmd = "Copilot", args = { "auth" } })
-	vim.cmd({ cmd = "Copilot", args = { "enable" } })
-	vim.cmd({ cmd = "Copilot", args = { "suggestion" } })
+	if toggleCopilot then
+		vim.cmd({ cmd = "Copilot", args = { "disable" } })
+		toggleCopilot = false
+	else
+		vim.cmd({ cmd = "Copilot", args = { "auth" } })
+		vim.cmd({ cmd = "Copilot", args = { "enable" } })
+		vim.cmd({ cmd = "Copilot", args = { "suggestion" } })
+		toggleCopilot = true
+	end
 end)
