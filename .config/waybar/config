@@ -12,7 +12,8 @@
         "custom/hostname",
         "custom/media",
         "custom/roon",
-        "custom/workvpn"
+        "custom/workvpn",
+        "hyprland/window"
     ],
     "modules-center": [
         "hyprland/workspaces"
@@ -143,7 +144,7 @@
     "custom/media": {
         "format": " {}",
         "interval": 10,
-        "max-length": 100,
+        "max-length": 50,
         "format-icons": {
             "spotify": ""
         },
@@ -157,10 +158,12 @@
     },
     "custom/workvpn": {
         "format": "{}",
+        "interval": 20,
         "exec": "fish ~/repos/scripts/workvpn_status.fish"
     },
     "custom/audioname": {
         "format": "{}",
+        "interval": 20,
         "exec": "fish ~/repos/scripts/audio_name.fish"
     }
 }

@@ -53,7 +53,8 @@ window#waybar {
   opacity: 0.7;
 }
 
-#clock {
+#clock,
+#custom-workvpn {
   background: #ffb65b;
   color: #1f2228;
 }
