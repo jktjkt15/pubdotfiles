@@ -7,13 +7,14 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+
 config.font = wezterm.font_with_fallback({
-	"CaskaydiaMono Nerd Font Mono",
+    { family = 'CaskaydiaMono Nerd Font Mono', weight = 'Medium' },
 	"Noto Color Emoji",
 	"Symbols Nerd Font",
 })
 
-config.font_size = 16
+config.font_size = 18
 config.cell_width = 0.9
 
 config.use_fancy_tab_bar = false
@@ -47,14 +48,20 @@ config.keys = {
 		}),
 	},
 	{
+		key = "F7",
+		action = act.SpawnCommandInNewTab({
+			args = { "fish", "-c", "~/repos/scripts/spotify.fish" },
+		}),
+	},
+	{
 		key = "u",
 		mods = "CTRL|SHIFT",
-		action = act.ScrollByPage(-0.5)
+		action = act.ScrollByPage(-0.5),
 	},
 	{
 		key = "d",
 		mods = "CTRL|SHIFT",
-		action = act.ScrollByPage(0.5)
+		action = act.ScrollByPage(0.5),
 	},
 }
 
