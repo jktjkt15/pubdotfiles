@@ -9,7 +9,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-sudo pacman -S --needed --noconfirm cifs-utils dmenu dotnet-sdk exa fd freerdp fuzzel fzf git-delta github-cli hyprland hyprpaper inetutils jq lastpass-cli lxappearance mako man-db neofetch noto-fonts noto-fonts-emoji openfortivpn otf-font-awesome python-pip ripgrep tealdeer ttf-cascadia-mono-nerd waybar wget wireplumber wl-clipboard xfce4-settings yq slurp grim cronie terraform wtype zellij ufw
+sudo pacman -S --needed --noconfirm cifs-utils dmenu dotnet-sdk exa fd freerdp fuzzel fzf git-delta github-cli hyprland hyprpaper inetutils jq lastpass-cli lxappearance mako man-db neofetch noto-fonts noto-fonts-emoji openfortivpn otf-font-awesome python-pip ripgrep tealdeer ttf-cascadia-mono-nerd waybar wget wireplumber wl-clipboard xfce4-settings yq slurp grim cronie terraform wtype ufw ffmpegthumbnailer poppler zoxide parallel cava
 
 groupadd -f input
 usermod -a -G input $USER
@@ -34,6 +34,7 @@ fisher update
 # [ 1] Anywhere                   ALLOW IN    PHONE STATIC IP 
 # [ 2] ROONARCPORT/tcp                  ALLOW IN    Anywhere
 
+sudo systemctl enable --now ufw.service
 
 cargo install spotify_player --features lyric-finder,image,notify,daemon
 
@@ -52,3 +53,5 @@ cargo install spotify_player --features lyric-finder,image,notify,daemon
 # WantedBy=default.target
 
 # systemctl --user enable --now jayspd.service
+
+stack install git-mediate
