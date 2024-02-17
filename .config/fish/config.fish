@@ -4,6 +4,17 @@ if status is-interactive
     set -g __fish_git_prompt_showupstream verbose
     set -g EDITOR nvim
 
+    function fish_title
+        set -q argv[1]; or set argv fish
+        # Looks like ~/d/fish: git log
+        # or /e/apt: fish
+        set prefix ""
+        if set -q SSH_TTY
+            echo "(SSH) "
+        end
+        echo (fish_prompt_pwd_dir_length=1 prompt_pwd): $argv
+    end
+
     fish_add_path ~/.local/share/bob/nvim-bin
     fish_add_path ~/.ghcup/bin
     fish_add_path ~/.cargo/bin
@@ -31,5 +42,6 @@ if status is-interactive
     alias sp="spotify_player playback"
 
     eval "$(ssh-agent -c)" >/dev/null
+    zoxide init fish | source
     starship init fish | source
 end
