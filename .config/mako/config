@@ -31,6 +31,7 @@ group-by=category
 
 [app-name="Slack"]
 background-color=#5a84e5aa
+default-timeout=6000
 
 [app-name="notify-send"]
 background-color=#5a84e5aa
