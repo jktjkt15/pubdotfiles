@@ -13,7 +13,9 @@
         "custom/media",
         "custom/roon",
         "custom/workvpn",
-        "hyprland/window"
+        "custom/homevpn",
+        "hyprland/window",
+        "custom/slack",
     ],
     "modules-center": [
         "hyprland/workspaces"
@@ -23,13 +25,16 @@
         "pulseaudio",
         "cpu",
         "memory",
-        "clock",
-        "tray"
+        "clock" //,
+        //"tray"
     ],
+    "hyprland/window": {
+        "max-length": 50
+    },
     // Modules configuration
     "hyprland/workspaces": {
         "disable-scroll": true,
-        "all-outputs": true,
+        "all-outputs": false,
         "warp-on-scroll": false,
         "format": " {name}: {icon} ",
         "format-icons": {
@@ -37,8 +42,11 @@
             "2": "rdp",
             "3": "slack",
             "4": "music",
-            "5": "discord",
+            "5": "browser",
             "6": "vpn"
+        },
+        "persistent-workspaces": {
+            "9": []
         }
     },
     "idle_inhibitor": {
@@ -161,9 +169,19 @@
         "interval": 20,
         "exec": "fish ~/repos/scripts/workvpn_status.fish"
     },
+    "custom/homevpn": {
+        "format": "{}",
+        "interval": 20,
+        "exec": "fish ~/repos/scripts/homevpn_status.fish"
+    },
     "custom/audioname": {
         "format": "{}",
         "interval": 20,
         "exec": "fish ~/repos/scripts/audio_name.fish"
+    },
+    "custom/slack": {
+        "format": "slack: {}",
+        "interval": 20,
+        "exec": "fish ~/repos/scripts/slack.fish"
     }
 }
