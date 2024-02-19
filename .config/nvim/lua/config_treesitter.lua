@@ -12,6 +12,8 @@ require("nvim-treesitter.configs").setup({
 		"python",
 		"json",
 		"haskell",
+		"markdown",
+		"markdown_inline",
 		"hcl",
 		"query",
 		-- "rust",
@@ -64,9 +66,9 @@ require("nvim-treesitter.configs").setup({
 			},
 			-- You can choose the select mode (default is charwise 'v')
 			selection_modes = {
-				["@parameter.outer"] = "v", -- charwise
-				["@function.outer"] = "V", -- linewise
-				["@class.outer"] = "<c-v>", -- blockwise
+				-- ["@parameter.outer"] = "v", -- charwise
+				-- ["@function.outer"] = "V", -- linewise
+				-- ["@class.outer"] = "<c-v>", -- blockwise
 			},
 			-- If you set this to `true` (default is `false`) then any textobject is
 			-- extended to include preceding xor succeeding whitespace. Succeeding

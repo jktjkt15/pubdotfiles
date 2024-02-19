@@ -15,6 +15,7 @@ require("mason-lspconfig").setup({
 		"csharp_ls",
 		"terraformls",
 		"lua_ls",
+		"helm_ls",
 		"powershell_es",
 		"dockerls",
 		"hls",
@@ -30,24 +31,22 @@ require("mason-lspconfig").setup({
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("lsp_signature").setup({
-	hint_enable = false,
+	hint_enable = true,
+	hint_prefix = "▫️",
+	floating_window = false,
+	hint_inline = function()
+		return false
+	end,
 })
+
 -- vim.keymap.set({ "n" }, "<leader>kk", function()
 -- 	require("lsp_signature").toggle_float_win()
 -- end, { silent = true, noremap = true, desc = "toggle signature" })
 
-vim.keymap.set({ "n" }, "K", function()
-	-- require("lsp_signature").toggle_float_win()
-	vim.lsp.buf.signature_help()
-end, { silent = true, noremap = true, desc = "toggle signature" })
-
---
--- require("lspconfig").csharp_ls.setup({
--- 	on_attach = function(client)
--- 		client.server_capabilities.documentFormattingProvider = false
--- 	end,
--- 	capabilities = capabilities,
--- })
+-- vim.keymap.set({ "n" }, "K", function()
+-- 	-- require("lsp_signature").toggle_float_win()
+-- 	vim.lsp.buf.signature_help()
+-- end, { silent = true, noremap = true, desc = "toggle signature" })
 
 local elixir = require("elixir")
 
@@ -99,15 +98,22 @@ require("lspconfig").tsserver.setup({
 	end,
 })
 
-require("lspconfig").omnisharp.setup({
-	on_attach = function(client)
-		client.server_capabilities.documentFormattingProvider = false
-	end,
-	capabilities = capabilities,
-	handlers = {
-		["textDocument/definition"] = require("omnisharp_extended").handler,
-	},
-})
+-- require("lspconfig").omnisharp.setup({
+-- 	on_attach = function(client)
+-- 		client.server_capabilities.documentFormattingProvider = false
+-- 	end,
+-- 	capabilities = capabilities,
+-- 	handlers = {
+-- 		["textDocument/definition"] = require("omnisharp_extended").handler,
+-- 	},
+-- })
+
+-- require("lspconfig").csharp_ls.setup({
+-- 	on_attach = function(client)
+-- 		client.server_capabilities.documentFormattingProvider = false
+-- 	end,
+-- 	capabilities = capabilities,
+-- })
 
 require("lspconfig").terraformls.setup({
 	on_attach = function(client)
@@ -120,6 +126,7 @@ require("lspconfig").powershell_es.setup({
 	capabilities = capabilities,
 	on_attach = function(client)
 		-- client.server_capabilities.semanticTokensProvider = {}
+		-- print("testesete")
 	end,
 })
 
@@ -129,6 +136,34 @@ require("lspconfig").dockerls.setup({
 
 require("lspconfig").jsonls.setup({
 	capabilities = capabilities,
+})
+
+require("lspconfig").helm_ls.setup({
+	capabilities = capabilities,
+	settings = {
+		valuesFiles = {
+			mainValuesFile = "values.yaml",
+			lintOverlayValuesFile = "values.lint.yaml",
+			additionalValuesFilesGlobPattern = "values*.yaml",
+		},
+		["helm-ls"] = {
+			yamlls = {
+				enabled = true,
+				diagnosticsLimit = 50,
+				showDiagnosticsDirectly = false,
+				path = "yaml-language-server",
+				filetypes_exclude = { "helm" },
+				config = {
+					schemas = {
+						kubernetes = "templates/**",
+					},
+					completion = true,
+					hover = true,
+					-- any other config from https://github.com/redhat-developer/yaml-language-server#language-server-settings
+				},
+			},
+		},
+	},
 })
 
 require("lspconfig").lua_ls.setup({
@@ -164,12 +199,8 @@ require("lspconfig").yamlls.setup(cfg)
 -- {
 -- 	capabilities = capabilities,
 -- 	lspconfig = cfg.lspconfig,
--- })
+-- }
 
 require("lspconfig").pyright.setup({
 	capabilities = capabilities,
 })
-
--- require("roslyn").setup({
--- 	capabilities = capabilities,
--- })

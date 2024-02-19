@@ -1,9 +1,10 @@
-vim.g.jayTodos = {
-	"styling prompt / wezterm",
-	"dmenu app styling",
-}
+vim.loader.enable()
 
 require("config_options")
+require("config_replace")
+require("config_clipboard")
 require("config_plugins")
 require("config_autoload")
 require("config_keymaps")
+require("config_codeautomation")
+require("config_note")

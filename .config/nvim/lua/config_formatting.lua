@@ -3,9 +3,21 @@ local conform = require("conform")
 conform.setup({
 	-- Conform will run multiple formatters sequentially
 	-- Use a sub-list to run only the first available formatter
+	formatters = {
+		custom_csharpier = {
+			command = "dotnet",
+			args = function(self, ctx)
+				local basePath = require("conform.util").root_file({ ".csharpierrc.yaml" })(self, ctx)
+				local configPath = basePath .. "/.csharpierrc.yaml"
+
+				return { "dotnet-csharpier", "--write-stdout", "--config-path", configPath }
+			end,
+			stdin = true,
+		},
+	},
 	formatters_by_ft = {
 		lua = { "stylua" },
-		cs = { "csharpier" },
+		cs = { "custom_csharpier" },
 		fish = { "fish_indent" },
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },

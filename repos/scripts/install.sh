@@ -39,6 +39,8 @@ sudo systemctl enable --now ufw.service
 cargo install spotify_player --features lyric-finder,image,notify,daemon
 cargo install trashy
 
+go install github.com/jesseduffield/lazydocker@latest
+
 #
 # [Unit]
 # Description=Spotify daemon

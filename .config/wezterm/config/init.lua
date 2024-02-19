@@ -24,6 +24,7 @@ config.window_background_opacity = 1
 config.text_background_opacity = 1
 config.color_scheme = "jayzone"
 config.default_prog = { "fish" }
+config.enable_wayland = false
 
 config.keys = {
 	{
@@ -49,9 +50,27 @@ config.keys = {
 		}),
 	},
 	{
+		key = "F6",
+		action = act.SpawnCommandInNewTab({
+			args = { "fish", "-c", "~/repos/scripts/lastpass.fish" },
+        }),
+    },
+    {
 		key = "F7",
 		action = act.SpawnCommandInNewTab({
 			args = { "fish", "-c", "~/repos/scripts/spotify.fish" },
+		}),
+	},
+	{
+		key = "F7",
+		action = act.SpawnCommandInNewTab({
+			args = { "fish", "-c", "~/repos/scripts/sp.fish" },
+		}),
+	},
+	{
+		key = "F8",
+		action = act.SpawnCommandInNewTab({
+			args = { "fish", "-c", "~/repos/scripts/accents.fish" },
 		}),
 	},
 	{

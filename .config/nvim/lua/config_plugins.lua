@@ -14,8 +14,105 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		dependencies = {
+			{ "tpope/vim-dadbod", lazy = true },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true }, -- Optional
+		},
+		cmd = {
+			"DBUI",
+			"DBUIToggle",
+			"DBUIAddConnection",
+			"DBUIFindBuffer",
+		},
+		config = function()
+			require("config_dadbod")
+		end,
+	},
+	{
+		"kndndrj/nvim-dbee",
+		enabled = false,
+		lazy = true,
+		cmd = "Dbee",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+		build = function()
+			require("dbee").install()
+		end,
+		config = function()
+			require("config_dbee")
+		end,
+	},
+	{
+		"robitx/gp.nvim",
+		event = "CmdlineEnter",
+		config = function()
+			require("config_gpt")
+		end,
+	},
+	{
+		"chrisgrieser/nvim-early-retirement",
+		config = function()
+			require("config_earlyretirement")
+		end,
+		event = "VeryLazy",
+	},
+	{
+		"folke/flash.nvim",
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+			-- { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+			{
+				"R",
+				mode = "o",
+				function()
+					require("flash").remote()
+				end,
+				desc = "Remote Flash",
+			},
+			-- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+			-- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+		},
+		config = function()
+			require("config_flash")
+		end,
+	},
+	{
+		"nvim-pack/nvim-spectre",
+		keys = {
+			{ "<leader>rp", "<leader>rp" },
+			{ "<leader>rf", "<leader>rf" },
+		},
+		config = function()
+			require("spectre").setup()
+
+			vim.keymap.set("n", "<leader>rp", '<cmd>lua require("spectre").toggle()<CR>', {
+				desc = "Toggle Spectre",
+			})
+			-- vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+			--     desc = "Search current word"
+			-- })
+			vim.keymap.set("v", "<leader>rp", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+				desc = "Search current word",
+			})
+			vim.keymap.set("n", "<leader>rf", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+				desc = "Search on current file",
+			})
+		end,
+	},
 	{
 		"backdround/global-note.nvim",
+		enabled = false,
 		keys = {
 			{
 				"<leader>n",
@@ -31,10 +128,22 @@ require("lazy").setup({
 			})
 		end,
 	},
+	-- {
+	-- 	"mbbill/undotree",
+	-- 	enabled = false,
+	-- 	cmd = "UndotreeToggle",
+	-- },
 	{
-		"mbbill/undotree",
-		enabled = false,
-		cmd = "UndotreeToggle",
+		"towolf/vim-helm",
+		ft = { "helm" },
+	},
+	{
+		"ibhagwan/fzf-lua",
+		-- enabled = false,
+		event = "VeryLazy",
+		config = function()
+			require("config_fzf")
+		end,
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
@@ -53,13 +162,11 @@ require("lazy").setup({
 	},
 	{
 		"mfussenegger/nvim-lint",
-		event = "BufEnter",
+		-- event = "BufEnter",
+		ft = { "tf", "haskell" },
 		config = function()
 			require("config_lint")
 		end,
-	},
-	{
-		"ThePrimeagen/git-worktree.nvim",
 	},
 	{
 		"mrcjkb/haskell-tools.nvim",
@@ -69,19 +176,15 @@ require("lazy").setup({
 		end,
 		ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
 	},
-	-- {
-	-- 	"chrisgrieser/nvim-various-textobjs",
-	-- 	event = "VeryLazy",
-	-- 	enabled = false,
-	-- 	config = function()
-	-- 		require("various-textobjs").setup({
-	-- 			useDefaultKeymaps = false,
-	-- 		})
-	-- 	end,
-	-- },
 	{
 		"chrisgrieser/nvim-spider",
-		event = "BufEnter",
+		-- event = "BufEnter",
+		keys = {
+			{ "w", "w" },
+			{ "W", "W" },
+			{ "b", "b" },
+			{ "B", "B" },
+		},
 	},
 	{
 		"stevearc/conform.nvim",
@@ -93,6 +196,7 @@ require("lazy").setup({
 	{
 		"johmsalas/text-case.nvim",
 		event = "CmdlineEnter",
+		-- cmd = "Sub",
 		config = function()
 			require("textcase").setup()
 		end,
@@ -100,6 +204,7 @@ require("lazy").setup({
 	{
 		"jackMort/ChatGPT.nvim",
 		cmd = "ChatGPT",
+		enabled = false,
 		config = function()
 			require("config_gen")
 		end,
@@ -117,27 +222,24 @@ require("lazy").setup({
 		},
 		ft = { "exs", "ex", "elixir" },
 	},
-	-- {
-	-- 	"jmederosalvarado/roslyn.nvim",
-	-- 	enabled = false,
-	-- 	dependencies = {
-	-- 		"williamboman/mason.nvim",
-	-- 	},
-	-- 	config = function()
-	-- 		require("config_lsp")
-	-- 	end,
-	-- },
-	-- {
-	-- 	"David-Kunz/gen.nvim",
-	-- 	enabled = false,
-	-- 	event = "VeryLazy",
-	-- 	config = function()
-	-- 		require("config_gen")
-	-- 	end,
-	-- },
+	{
+		"seblj/roslyn.nvim",
+		ft = { "cs" },
+		config = function()
+			require("config_lsp_roslyn")
+		end,
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+	},
 	{
 		"chrisgrieser/nvim-genghis",
-		event = "BufEnter",
+		-- event = "BufEnter",
+		keys = {
+			{ "<leader>yp", "<leader>yp" },
+			{ "<leader>yn", "<leader>yn" },
+			{ "<leader>ym", "<leader>ym" },
+		},
 		config = function()
 			local genghis = require("genghis")
 			vim.keymap.set("n", "<leader>yp", genghis.copyFilepath)
@@ -184,7 +286,7 @@ require("lazy").setup({
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		event = "BufEnter",
+		event = "VeryLazy",
 		config = function()
 			require("config_lualine")
 		end,
@@ -194,13 +296,21 @@ require("lazy").setup({
 		},
 	},
 	{
+		"phelipetls/jsonpath.nvim",
+		ft = { "json" },
+	},
+	{
 		"dstein64/vim-startuptime",
 		cmd = "StartupTime",
+		enabled = false,
 	},
 	{
 		"stevearc/overseer.nvim",
 		-- event = "VeryLazy",
-		lazy = true,
+		-- lazy = true,
+		keys = {
+			{ "<leader>pp", "<leader>pp" },
+		},
 		config = function()
 			require("overseer").setup()
 			vim.keymap.set("n", "<leader>pp", require("overseer").toggle)
@@ -224,33 +334,32 @@ require("lazy").setup({
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		event = "BufEnter",
+		-- event = "BufEnter",
+		-- lazy = true,
+		event = "VeryLazy",
 		config = function()
 			require("config_indent")
 		end,
 	},
 	{
-		"rcarriga/nvim-notify",
-		enabled = false,
+		"echasnovski/mini.notify",
 		event = "VeryLazy",
 		config = function()
 			require("config_notify")
 		end,
 	},
-	{
-		"echasnovski/mini.notify",
-		-- event = "VeryLazy",
-		config = function()
-			require("config_notify")
-		end,
-	},
-	{
-		"numToStr/Comment.nvim",
-		event = "BufEnter",
-		config = function()
-			require("Comment").setup()
-		end,
-	},
+	-- {
+	-- 	"numToStr/Comment.nvim",
+	-- 	-- event = "BufEnter",
+	-- 	-- event = "VeryLazy",
+	-- 	keys = {
+	-- 		{ "gc", "gc" },
+	-- 	},
+	-- 	lazy = true,
+	-- 	config = function()
+	-- 		require("Comment").setup()
+	-- 	end,
+	-- },
 	{
 		"nvim-tree/nvim-web-devicons",
 		lazy = true,
@@ -265,9 +374,25 @@ require("lazy").setup({
 	},
 	{
 		"kylechui/nvim-surround",
-		event = "BufEnter",
+		-- event = "BufEnter",
+		event = "VeryLazy",
+		-- lazy = true,
 		config = function()
-			require("nvim-surround").setup()
+			require("nvim-surround").setup({
+				keymaps = {
+					insert = "<C-g>s",
+					insert_line = "<C-g>S",
+					normal = "ys",
+					normal_cur = "yss",
+					normal_line = "yS",
+					normal_cur_line = "ySS",
+					visual = nil,
+					visual_line = nil,
+					delete = "ds",
+					change = "cs",
+					change_line = "cS",
+				},
+			})
 		end,
 	},
 	{
@@ -280,7 +405,9 @@ require("lazy").setup({
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "BufEnter",
+		-- event = "BufEnter",
+		event = "VeryLazy",
+		-- lazy = true,
 		config = function()
 			require("config_gitsigns")
 		end,
@@ -293,18 +420,33 @@ require("lazy").setup({
 			require("diffview").setup()
 		end,
 	},
+	-- {
+	-- 	"startup-nvim/startup.nvim",
+	-- 	enabled = false,
+	-- 	config = function()
+	-- 		require("config_startup")
+	-- 	end,
+	-- },
 	{
-		"startup-nvim/startup.nvim",
-		enabled = false,
+		"OXY2DEV/markview.nvim",
+		-- ft = "markdown",
+		event = "VeryLazy",
 		config = function()
-			require("config_startup")
+			require("config_markview")
 		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		-- event = "BufEnter",
 		-- event = "VeryLazy",
-		enabled = "false",
+		lazy = true,
+		-- enabled = "false",
+		-- commit = "c4f65272a971b9d5d6ac7ed4607e50dd6207923f",
 		-- event = { "BufEnter", "CmdlineEnter" },
 		config = function()
 			require("config_treesitter")
@@ -312,12 +454,13 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"nvim-treesitter/playground",
-			{
-				"yaocccc/nvim-hl-mdcodeblock.lua",
-				config = function()
-					require("hl-mdcodeblock").setup()
-				end,
-			},
+			-- {
+			-- 	"yaocccc/nvim-hl-mdcodeblock.lua",
+			-- 	enabled = false,
+			-- 	config = function()
+			-- 		require("hl-mdcodeblock").setup()
+			-- 	end,
+			-- },
 		},
 	},
 	{
@@ -328,6 +471,7 @@ require("lazy").setup({
 			{ "<leader>fcc", "<leader>fcc" },
 			{ "<leader>fp", "<leader>fp" },
 			{ "<leader>fb", "<leader>fb" },
+			{ "<leader>fh", "<leader>fh" },
 		},
 		config = function()
 			require("config_telescope")
@@ -356,7 +500,10 @@ require("lazy").setup({
 	},
 	{
 		"hiphish/rainbow-delimiters.nvim",
-		event = "BufEnter",
+		-- event = "BufEnter",
+		event = "VeryLazy",
+		-- lazy = true,
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
 			local rainbow_delimiters = require("rainbow-delimiters")
 
@@ -375,7 +522,7 @@ require("lazy").setup({
 					"RainbowDelimiterYellow",
 					"RainbowDelimiterCyan",
 					"RainbowDelimiterRed",
-					"RainbowDelimiterOrange",
+					-- "RainbowDelimiterOrange",
 					-- 'RainbowDelimiterGreen',
 				},
 			}
@@ -383,15 +530,16 @@ require("lazy").setup({
 	},
 	{
 		"ggandor/leap.nvim",
+		enabled = false,
 		event = "BufEnter",
 		config = function()
 			require("leap").add_default_mappings()
 		end,
 	},
-	{
-		"tpope/vim-repeat",
-		event = "BufEnter",
-	},
+	-- {
+	-- 	"tpope/vim-repeat",
+	-- 	event = "BufEnter",
+	-- },
 	-- {
 	-- 	"ggandor/flit.nvim",
 	-- 	enabled = false,
@@ -411,9 +559,16 @@ require("lazy").setup({
 	},
 	{
 		"ThePrimeagen/harpoon",
-		enabled = true,
-		event = "VeryLazy",
-		branch = "harpoon2",
+		-- enabled = true,
+		-- event = "VeryLazy",
+		-- lazy = true,
+		keys = {
+			{ "<leader>a", "<leader>a" },
+			{ "<leader>xa", "<leader>xa" },
+			{ "<leader>xx", "<leader>xx" },
+		},
+		-- branch = "harpoon2",
+		commit = "e76cb03",
 		config = function()
 			require("config_buffers")
 		end,
@@ -423,18 +578,22 @@ require("lazy").setup({
 	},
 	{
 		"kana/vim-textobj-entire",
-		event = "BufEnter",
+		event = "VeryLazy",
+		-- lazy = true,
 		dependencies = {
 			"kana/vim-textobj-user",
 		},
 	},
-	{
-		"svermeulen/vim-easyclip",
-		event = "BufEnter",
-		config = function()
-			vim.g.EasyClipPreserveCursorPositionAfterYank = 1
-		end,
-	},
+	-- {
+	-- 	"svermeulen/vim-easyclip",
+	-- 	event = "BufEnter",
+	-- 	enabled = false,
+	-- 	config = function()
+	-- 		vim.g.EasyClipPreserveCursorPositionAfterYank = 1
+	-- 		vim.g.EasyClipEnableBlackHoleRedirect = 0
+	-- 		vim.g.EasyClipEnableBlackHoleRedirectForChangeOperator = 0
+	-- 	end,
+	-- },
 	{
 		"vimwiki/vimwiki",
 		enabled = false,
@@ -442,7 +601,9 @@ require("lazy").setup({
 	},
 	{
 		"stevearc/dressing.nvim",
-		event = "BufEnter",
+		-- event = "BufEnter",
+		-- lazy = true,
+		event = "VeryLazy",
 		config = function()
 			require("config_dressing")
 		end,
@@ -453,18 +614,36 @@ require("lazy").setup({
 		config = function()
 			require("config_nvimcmp")
 		end,
+
+		opts = function(_, opts)
+			opts.sources = opts.sources or {}
+			table.insert(opts.sources, {
+				name = "lazydev",
+				group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+			})
+		end,
+
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
+			-- "hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			"https://codeberg.org/FelipeLema/cmp-async-path",
+			{
+				"zbirenbaum/copilot-cmp",
+				config = function()
+					require("copilot_cmp").setup()
+				end,
+			},
+
 			-- "L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
+			-- "saadparwaiz1/cmp_luasnip",
 		},
 	},
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
+		lazy = true,
 		config = function()
 			require("config_copilot")
 		end,
@@ -489,6 +668,16 @@ require("lazy").setup({
 		},
 	},
 	{
+		"nvimtools/none-ls.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("config_nonels")
+		end,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+	{
 		"ionide/Ionide-vim",
 		ft = { "fs", "fsharp" },
 		dependencies = {
@@ -496,14 +685,15 @@ require("lazy").setup({
 		},
 	},
 	{
-		"folke/neodev.nvim",
-		enabled = true,
-		-- priority = 999,
-		ft = { "lua" },
-		config = function()
-			require("neodev").setup()
-		end,
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+		},
 	},
+	{ "Bilal2453/luvit-meta", lazy = true },
 	{
 		"mfussenegger/nvim-dap",
 		enabled = false,
@@ -516,33 +706,29 @@ require("lazy").setup({
 		},
 	},
 	{
-		"AckslD/messages.nvim",
-		enabled = false,
-		cmd = "Messages",
-		config = function()
-			require("messages").setup()
-		end,
-	},
-	{
 		"ariel-frischer/bmessages.nvim",
 		cmd = "Bmessages",
 		opts = {},
 		-- event = "CmdlineEnter",
 	},
-	{
-		"L3MON4D3/LuaSnip",
-		event = "InsertEnter",
-		-- lazy = false,
-		-- priority = 998,
-		version = "1.*",
-		build = { "make install_jsregexp" },
-		config = function()
-			require("config_luasnip")
-		end,
-	},
+	-- {
+	-- 	"L3MON4D3/LuaSnip",
+	-- 	event = "InsertEnter",
+	-- 	-- lazy = false,
+	-- 	-- priority = 998,
+	-- 	enabled = false,
+	-- 	version = "1.*",
+	-- 	build = { "make install_jsregexp" },
+	-- 	config = function()
+	-- 		-- require("config_luasnip")
+	-- 	end,
+	-- },
 	{
 		"nguyenvukhang/nvim-toggler",
-		event = "BufEnter",
+		-- event = "BufEnter",
+		keys = {
+			{ "<leader>ct", "<leader>ct" },
+		},
 		config = function()
 			require("config_toggler")
 		end,
@@ -552,7 +738,7 @@ require("lazy").setup({
 		lazy = false,
 		priority = 1100,
 		config = function()
-			require("jayzone").setup()
+			require("jayzone").setup({ name = "jayzone" })
 			vim.cmd("hi Normal ctermbg=none guibg=none")
 			vim.cmd("hi MiniNotifyNormal ctermbg=none guibg=none")
 			-- vim.cmd("hi MiniNotifyTitle ctermbg=none guibg=none")
@@ -581,7 +767,7 @@ require("lazy").setup({
 	},
 }, {
 	dev = {
-		path = "E:/Repos/nvim/plugins",
+		path = "~/repos/plugins/",
 	},
 	ui = {
 		border = "double",

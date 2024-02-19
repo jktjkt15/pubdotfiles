@@ -1,5 +1,4 @@
 vim.cmd([[syntax on]])
-vim.cmd([[set clipboard=unnamedplus]])
 vim.cmd([[set mouse=]])
 
 vim.g.mapleader = ","
@@ -42,7 +41,12 @@ vim.opt.scrolloff = 8
 vim.opt.re = 0
 vim.opt.fillchars = "eob: "
 vim.opt.title = true
-vim.opt.titlestring = " Neovim "
+vim.opt.titlestring = "Neovim"
+
+if os.getenv("SSH_TTY") ~= nil then
+	vim.o.titlestring = string.format("(SSH) %s", vim.o.titlestring)
+end
+
 vim.opt.diffopt = { "internal", "vertical", "closeoff", "filler" }
 vim.opt.shm:append("I")
 
