@@ -18,7 +18,7 @@ vim.keymap.set("n", "<C-p>", "<C-6>")
 vim.keymap.set("n", "<leader>u", "<C-r>")
 
 -- Clear highlights
-vim.keymap.set("n", "<leader>nh", "<cmd>nohl<cr>")
+-- vim.keymap.set("n", "<leader>nh", "<cmd>nohl<cr>")
 vim.keymap.set("n", "<Esc>", "<cmd>nohl<cr>")
 
 -- CamelMotions

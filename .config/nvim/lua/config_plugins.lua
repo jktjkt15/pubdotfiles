@@ -15,6 +15,28 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{
+		"backdround/global-note.nvim",
+		keys = {
+			{
+				"<leader>n",
+				"<leader>n",
+			},
+		},
+		config = function()
+			local global_note = require("global-note")
+			global_note.setup()
+
+			vim.keymap.set("n", "<leader>n", global_note.toggle_note, {
+				desc = "Toggle global note",
+			})
+		end,
+	},
+	{
+		"mbbill/undotree",
+		enabled = false,
+		cmd = "UndotreeToggle",
+	},
+	{
 		"brenoprata10/nvim-highlight-colors",
 		keys = {
 			{
@@ -314,6 +336,7 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"debugloop/telescope-undo.nvim",
+			"siawkz/nvim-cheatsh",
 		},
 	},
 	{
@@ -474,6 +497,7 @@ require("lazy").setup({
 	},
 	{
 		"folke/neodev.nvim",
+		enabled = true,
 		-- priority = 999,
 		ft = { "lua" },
 		config = function()
