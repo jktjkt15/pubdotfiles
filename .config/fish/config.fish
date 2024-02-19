@@ -24,10 +24,10 @@ if status is-interactive
     fzf_configure_bindings --directory=\cf
     fish_vi_key_bindings
 
-    alias ls='exa --color=auto --icons'
-    alias ll='exa -l --color=auto --icons'
-    alias la='exa -la --color=auto --icons'
-    alias lt='exa --tree'
+    alias ls='eza --color=auto --icons'
+    alias ll='eza -l --color=auto --icons'
+    alias la='eza -la --color=auto --icons'
+    alias lt='eza --tree'
     alias grep='grep --color=auto'
     alias v='nvim'
     #alias vim='nvim'
@@ -40,6 +40,9 @@ if status is-interactive
     alias ng="nvim -c 'G' -c 'on'"
     alias s="spotify_player"
     alias sp="spotify_player playback"
+    alias t="trash"
+    alias tp="trash put"
+    alias ce="export EDITOR=nvim && crontab -e"
 
     eval "$(ssh-agent -c)" >/dev/null
     zoxide init fish | source
