@@ -9,12 +9,12 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
-sudo pacman -S --needed --noconfirm cifs-utils dmenu dotnet-sdk eza fd freerdp fuzzel fzf git-delta github-cli hyprland hyprpaper inetutils jq lastpass-cli lxappearance mako man-db neofetch noto-fonts noto-fonts-emoji openfortivpn otf-font-awesome python-pip ripgrep tealdeer ttf-cascadia-mono-nerd waybar wget wireplumber wl-clipboard xfce4-settings yq slurp grim cronie terraform wtype ufw ffmpegthumbnailer poppler zoxide parallel cava unarchiver timew
+sudo pacman -S --needed --noconfirm cifs-utils dmenu dotnet-sdk eza fd freerdp fuzzel fzf git-delta github-cli hyprland hyprpaper inetutils jq lastpass-cli lxappearance mako man-db neofetch noto-fonts noto-fonts-emoji openfortivpn otf-font-awesome python-pip ripgrep tealdeer ttf-cascadia-mono-nerd waybar wget wireplumber wl-clipboard xfce4-settings yq slurp grim cronie terraform wtype ufw ffmpegthumbnailer poppler zoxide parallel cava unarchiver timew sudo bluez bluez-utils ttf-sarasa-gothic docker docker-compose whois
 
 groupadd -f input
 usermod -a -G input $USER
 
-yay -Syu --needed --answerclean None --answerdiff None --cleanafter --removemake --answerupgrade brave-bin discord elixir expressvpn firefox slack-desktop spotify vlc wezterm remmina-git dracula-gtk-theme dracula-icons-git cli-visualizer swaylock-effects-git powershell azure-cli
+yay -Syu --needed --answerclean None --answerdiff None --cleanafter --removemake --answerupgrade brave-bin discord elixir expressvpn firefox slack-desktop spotify vlc wezterm remmina-git dracula-gtk-theme dracula-icons-git cli-visualizer swaylock-effects-git powershell azure-cli jqp-bin
 
 chsh -s /bin/fish
 # run the following in fish
