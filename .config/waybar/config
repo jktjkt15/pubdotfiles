@@ -12,8 +12,6 @@
         "custom/hostname",
         "custom/media",
         "custom/roon",
-        "custom/workvpn",
-        "custom/homevpn",
         "hyprland/window",
         "custom/slack",
     ],
@@ -21,10 +19,14 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
+        "custom/workvpn",
+        "custom/homevpn",
+        "custom/wgvpn",
         "custom/audioname",
         "pulseaudio",
         "cpu",
         "memory",
+        "custom/disk",
         "clock" //,
         //"tray"
     ],
@@ -63,7 +65,7 @@
     "clock": {
         "timezone": "Canada/Eastern",
         "interval": 1,
-        "format": " {:%Y-%m-%d %H:%M:%S}",
+        "format": "{:%Y-%m-%d %H:%M:%S}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -126,7 +128,7 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": " {volume}%",
+        "format": "vol: {volume}%",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": "{icon} {format_source}",
         "format-source": "{volume}% ",
@@ -156,7 +158,7 @@
         "format-icons": {
             "spotify": ""
         },
-        "exec": "[ $(playerctl status) == \"Playing\" ] && playerctl metadata --format \"{{ lc(artist) }} - {{ lc(title) }}\""
+        "exec": "fish ~/repos/scripts/spotify_name.fish"
     },
     "custom/roon": {
         "format": "roon: {}",
@@ -174,6 +176,11 @@
         "interval": 20,
         "exec": "fish ~/repos/scripts/homevpn_status.fish"
     },
+    "custom/wgvpn": {
+        "format": "{}",
+        "interval": 20,
+        "exec": "fish ~/repos/scripts/wgvpn_status.fish"
+    },
     "custom/audioname": {
         "format": "{}",
         "interval": 20,
@@ -183,5 +190,10 @@
         "format": "slack: {}",
         "interval": 20,
         "exec": "fish ~/repos/scripts/slack.fish"
+    },
+    "custom/disk": {
+        "format": "dsk: {}%",
+        "interval": 120,
+        "exec": "fish ~/repos/scripts/disk_space.fish"
     }
 }

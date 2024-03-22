@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 0px;
-  font-family: "CaskaydiaMono Nerd Font Mono", "Font Awesome 6 Free";
+  font-family: "CaskaydiaMono Nerd Font Mono", "Sarasa", "Font Awesome 6 Free";
   font-size: 16px;
   min-height: 26px;
 }
@@ -26,6 +26,9 @@ window#waybar {
   background: #1f2228;
   border-radius: 10px;
   margin-right: 12px;
+  border-width: 2px;
+  border-color: #f2f3f3;
+  border-style: solid;
   opacity: 0.7;
 }
 
@@ -52,6 +55,8 @@ window#waybar {
 #custom-audioname,
 #custom-slack,
 #custom-homevpn,
+#custom-wgvpn,
+#custom-disk,
 #clock {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -60,11 +65,16 @@ window#waybar {
   background: #1f2228;
   padding: 12px;
   opacity: 0.7;
+
+  border-width: 2px;
+  border-color: #f2f3f3;
+  border-style: solid;
 }
 
 #clock,
 #custom-slack,
 #custom-homevpn,
+#custom-wgvpn,
 #custom-workvpn {
   background: #ffb65b;
   color: #1f2228;

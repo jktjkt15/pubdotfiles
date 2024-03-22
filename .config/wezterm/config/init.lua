@@ -10,6 +10,7 @@ end
 
 config.font = wezterm.font_with_fallback({
     { family = 'CaskaydiaMono Nerd Font Mono', weight = 'Medium' },
+    "Sarasa",
 	"Noto Color Emoji",
 	"Symbols Nerd Font",
 })
