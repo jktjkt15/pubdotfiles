@@ -19,6 +19,7 @@ require("mason-lspconfig").setup({
 		"powershell_es",
 		"dockerls",
 		"hls",
+		"gopls",
 		-- "elixirls",
 		-- "nextls",
 		"jsonls",
@@ -164,6 +165,11 @@ require("lspconfig").helm_ls.setup({
 			},
 		},
 	},
+})
+
+
+require("lspconfig").gopls.setup({
+	capabilities = capabilities,
 })
 
 require("lspconfig").lua_ls.setup({

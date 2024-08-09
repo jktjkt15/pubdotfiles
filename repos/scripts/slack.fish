@@ -1,3 +1,3 @@
 #! /bin/fish
 
-hyprctl workspaces | rg "lastwindowtitle: Slack" | rg -v hyprctl | rg " Slack Server - (.*+) new item" -or '$1'
+hyprctl workspaces | rg '!.* MAG Slack Server - (\d+) new' -or '$1'

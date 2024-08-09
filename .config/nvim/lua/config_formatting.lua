@@ -22,6 +22,7 @@ conform.setup({
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },
 		css = { "prettierd" },
+		go = { "gofmt" },
 	},
 	format_on_save = {
 		timeout_ms = 2500,

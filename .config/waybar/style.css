@@ -2,8 +2,12 @@
   border: none;
   border-radius: 0px;
   font-family: "CaskaydiaMono Nerd Font Mono", "Sarasa", "Font Awesome 6 Free";
-  font-size: 16px;
-  min-height: 26px;
+  /* font-size: 16px; */
+  /* min-height: 26px; */
+  font-size: 17px;
+  /* font-size: 12px; */
+  font-weight: bold;
+  /* min-height: 16px; */
 }
 
 window#waybar {
@@ -14,18 +18,21 @@ window#waybar {
 }
 
 #workspaces {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 2px;
+  /* margin-top: 10px; */
+  /* margin-bottom: 10px; */
+  margin-bottom: 2px;
   transition: none;
-  margin-left: 5px;
-  margin-right: 5px;
+  /* margin-left: 5px; */
+  /* margin-right: 5px; */
 }
 
 #workspaces button {
   color: #f2f3f3;
   background: #1f2228;
   border-radius: 10px;
-  margin-right: 12px;
+  margin-right: 4px;
+  /* margin-right: 2px; */
   border-width: 2px;
   border-color: #f2f3f3;
   border-style: solid;
@@ -58,8 +65,10 @@ window#waybar {
 #custom-wgvpn,
 #custom-disk,
 #clock {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  /* margin-top: 10px; */
+  margin-top: 4px;
+  /* margin-bottom: 10px; */
+  margin-bottom: 2px;
   border-radius: 10px;
   color: #f2f3f3;
   background: #1f2228;
