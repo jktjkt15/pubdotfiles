@@ -11,6 +11,7 @@ require("nvim-treesitter.configs").setup({
 		"vim",
 		"go",
 		"proto",
+		"latex",
 		"python",
 		"json",
 		"haskell",

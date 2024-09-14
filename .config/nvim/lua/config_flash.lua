@@ -150,7 +150,7 @@ require("flash").setup({
 		-- options used when flash is activated through
 		-- `f`, `F`, `t`, `T`, `;` and `,` motions
 		char = {
-			enabled = true,
+			enabled = false,
 			-- dynamic configuration for ftFT motions
 			config = function(opts)
 				-- autohide flash when in operator-pending mode

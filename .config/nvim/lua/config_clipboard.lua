@@ -37,7 +37,7 @@ if os.getenv("SSH_TTY") ~= nil then
 		},
 	}
 
-	vim.keymap.set({ "n", "x" }, "<leader>yy", _G.__JaySSHYank, { expr = true, desc = "SSH Yank" })
+	vim.keymap.set({ "n", "x" }, "<localleader>y", _G.__JaySSHYank, { expr = true, desc = "SSH Yank" })
 
 	-- vim.keymap.set({ "n" }, "<leader>P", function()
 	-- 	local a = require("vim.ui.clipboard.osc52").paste("*")()

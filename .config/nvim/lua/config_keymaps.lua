@@ -117,10 +117,11 @@ vim.keymap.set("n", "<leader>el", ":e ~/.config/nvim/lua/init.lua<cr>")
 vim.keymap.set("n", "<leader>sc", ":w<cr>:so %<cr>")
 
 -- Exit
-vim.keymap.set({ "n", "t" }, "<F4>", "<cmd>qa<cr>")
+-- vim.keymap.set({ "n", "t" }, "<F4>", "<cmd>qa<cr>")
 
 -- Term promt
-vim.keymap.set("n", "<leader>d", ":sp|te ")
+-- vim.keymap.set("n", "<leader>d", ":sp|te ")
+
 -- Terminal Helpers
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("t", "<C-v><Esc>", "<Esc>")
@@ -139,7 +140,7 @@ vim.keymap.set({ "n", "i" }, "<C-F>", "<C-w>k")
 vim.keymap.set({ "n", "i" }, "<C-T>", "<C-w>l")
 
 -- Terms buffer start in insert mode
-vim.api.nvim_create_autocmd({ "TermEnter", "TermOpen" }, {
+vim.api.nvim_create_autocmd({ "TermEnter", "TermOpen", "BufEnter" }, {
 	group = vim.api.nvim_create_augroup("term_setting", { clear = true }),
 	pattern = "term://*",
 	command = "startinsert",

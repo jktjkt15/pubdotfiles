@@ -5,7 +5,6 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 2
 vim.g.loaded_netrwPlugin = 1
-vim.g.vimwiki_hl_headers = 1
 vim.opt.termguicolors = true
 vim.opt.laststatus = 3
 vim.opt.number = true
@@ -42,10 +41,6 @@ vim.opt.re = 0
 vim.opt.fillchars = "eob: "
 vim.opt.title = true
 vim.opt.titlestring = "Neovim"
-
-if os.getenv("SSH_TTY") ~= nil then
-	vim.o.titlestring = string.format("(SSH) %s", vim.o.titlestring)
-end
 
 vim.opt.diffopt = { "internal", "vertical", "closeoff", "filler" }
 vim.opt.shm:append("I")

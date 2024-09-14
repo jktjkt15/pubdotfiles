@@ -54,6 +54,12 @@ end
 
 require("roslyn").setup({
 	config = {
+		settings = {
+			["csharp|background_analysis"] = {
+				dotnet_analyzer_diagnostics_scope = "full_solution",
+				dotnet_compiler_diagnostics_scope = "full_solution",
+			},
+		},
 		on_attach = function(client)
 			monkeyPatch(client)
 		end,

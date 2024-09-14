@@ -157,6 +157,28 @@ require("lualine").setup({
 					return str:sub(1, 20)
 				end,
 			},
+			{
+				function()
+					local result = require("config_worktrees").CurrentWorktree()
+
+					if result == "" then
+						return ""
+					end
+
+					return " " .. result
+				end,
+			},
+			{
+				function()
+					local result = require("config_monorepo").GetCurrentSubRepo()
+
+					if result == "" then
+						return ""
+					end
+
+					return " " .. result
+				end,
+			},
 		},
 		lualine_c = {
 			"diff",

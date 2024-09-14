@@ -106,24 +106,37 @@ end
 function _G.__JaySSHYank(motion)
 	if motion == nil then
 		saveCurrentSpot()
+		isVisual = vim.api.nvim_get_mode().mode == "V"
 		vim.o.operatorfunc = "v:lua.__JaySSHYank"
 		return "g@"
 	end
 
-	local range = {
-		starting = vim.api.nvim_buf_get_mark(0, "["),
-		ending = vim.api.nvim_buf_get_mark(0, "]"),
-	}
+	local text = nil
 
-	local text = vim.api.nvim_buf_get_text(
-		0,
-		range.starting[1] - 1,
-		range.starting[2],
-		range.ending[1] - 1,
-		range.ending[2] + 1,
-		{}
-	)
+	if isVisual then
+		local range = {
+			starting = vim.fn.line("'<") - 1,
+			ending = vim.fn.line("'>"),
+		}
 
+		text = vim.api.nvim_buf_get_lines(0, range.starting, range.ending, true)
+	else
+		local range = {
+			starting = vim.api.nvim_buf_get_mark(0, "["),
+			ending = vim.api.nvim_buf_get_mark(0, "]"),
+		}
+
+		text = vim.api.nvim_buf_get_text(
+			0,
+			range.starting[1] - 1,
+			range.starting[2],
+			range.ending[1] - 1,
+			range.ending[2] + 1,
+			{}
+		)
+	end
+
+	vim.notify("yup: " .. vim.inspect(text))
 	require("vim.ui.clipboard.osc52").copy("+")(text)
 
 	restoreSavedSpot()

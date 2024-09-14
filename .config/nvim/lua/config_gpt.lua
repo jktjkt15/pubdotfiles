@@ -32,3 +32,5 @@ local conf = {
 require("gp").setup(conf)
 
 vim.keymap.set({ "x" }, "<leader>gp", "<cmd>'<,'>GpNew implement the following<CR>", { desc = "GPT Eval selection" })
+vim.keymap.set({ "n" }, "<leader>gnn", ":GpNew ", { desc = "GPT New in command" })
+vim.keymap.set({ "n" }, "<leader>gnc", "<cmd>GpChatNew<CR>", { desc = "GPT New Chat" })

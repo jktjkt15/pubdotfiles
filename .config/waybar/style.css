@@ -64,6 +64,7 @@ window#waybar {
 #custom-homevpn,
 #custom-wgvpn,
 #custom-disk,
+#custom-clock,
 #clock {
   /* margin-top: 10px; */
   margin-top: 4px;
@@ -82,6 +83,7 @@ window#waybar {
 
 #clock,
 #custom-slack,
+#custom-clock,
 #custom-homevpn,
 #custom-wgvpn,
 #custom-workvpn {
@@ -89,7 +91,8 @@ window#waybar {
   color: #1f2228;
 }
 
-#clock {
+#clock,
+#custom-clock {
   margin-right: 10px;
 }
 

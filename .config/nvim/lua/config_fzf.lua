@@ -100,9 +100,9 @@ vim.keymap.set("n", "<leader>fcc", function()
 	fzflua.files({ cwd = buffer_dir(), winopts = { preview = { layout = "horizontal" } } })
 end)
 
-vim.keymap.set("n", "<leader>ff", function()
-	fzflua.files()
-end, { desc = "Find files in fzf" })
+-- vim.keymap.set("n", "<leader>ff", function()
+-- 	fzflua.files()
+-- end, { desc = "Find files in fzf" })
 
 -- vim.keymap.set("n", "<leader><leader>ff", function()
 -- 	-- local opts = vim.tbl_deep_extend("force", baseThemeOptions, { hidden = true })
@@ -112,11 +112,11 @@ end, { desc = "Find files in fzf" })
 -- end, { desc = "Resume search in fzf" })
 
 vim.keymap.set("n", "<leader>fgg", function()
-	fzflua.live_grep()
+	fzflua.grep({ search = "" })
 end)
 
 vim.keymap.set("n", "<leader>fgc", function()
-	fzflua.live_grep({ cwd = buffer_dir() })
+	fzflua.grep({ search = "", cwd = buffer_dir() })
 end)
 
 vim.keymap.set("n", "<leader>fb", function()
@@ -140,7 +140,7 @@ vim.keymap.set("n", "<leader>fd", function()
 end)
 
 vim.keymap.set("n", "<leader>fs", function()
-	fzflua.lsp_workspace_symbols({ winopts = { preview = { layout = "vertical" } } })
+	fzflua.lsp_live_workspace_symbols({ winopts = { preview = { layout = "vertical" } } })
 end)
 
 vim.keymap.set("n", "gd", function()
@@ -184,6 +184,7 @@ local function setContentInSplitWindow(ft, content)
 			-- vim.cmd([[ Markview enable ]])
 		end
 		vim.cmd([[ setlocal nonumber ]])
+		vim.cmd([[ setlocal nomodifiable ]])
 		-- vim.cmd([[ setlocal nobuflisted ]])
 		-- vim.cmd([[ setlocal buftype nowrite ]])
 	end)

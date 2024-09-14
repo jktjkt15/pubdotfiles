@@ -4,10 +4,10 @@ vim.keymap.set("n", "<leader>fu", function()
 	telescope.extensions.undo.undo()
 end)
 
-vim.keymap.set("n", "<leader>fp", function()
-	require("workspaces")
-	vim.schedule(telescope.extensions.workspaces.workspaces)
-end)
+-- vim.keymap.set("n", "<leader>fp", function()
+-- 	require("workspaces")
+-- 	vim.schedule(telescope.extensions.workspaces.workspaces)
+-- end)
 
 require("telescope").setup({
 	extensions = {

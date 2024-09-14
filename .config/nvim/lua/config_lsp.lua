@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>i", "<cmd>Inspect<cr>")
 
 require("mason-lspconfig").setup({
 	ensure_installed = {
-		"tsserver",
+		"ts_ls",
 		"omnisharp",
 		"csharp_ls",
 		"terraformls",
@@ -92,7 +92,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	command = [[set filetype=fsharp]],
 })
 
-require("lspconfig").tsserver.setup({
+require("lspconfig").ts_ls.setup({
 	capabilities = capabilities,
 	on_attach = function(client)
 		client.server_capabilities.documentFormattingProvider = false
