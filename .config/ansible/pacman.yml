@@ -1,0 +1,292 @@
+- name: Pacman
+  hosts: myhosts
+  tasks:
+    - name: fzf
+      community.general.pacman:
+        name: fzf
+        state: present
+
+    - name: bob
+      community.general.pacman:
+        name: bob
+        state: present
+
+    - name: base-devel
+      community.general.pacman:
+        name: base-devel
+        state: present
+
+    - name: unzip
+      community.general.pacman:
+        name: unzip
+        state: present
+
+    - name: npm
+      community.general.pacman:
+        name: npm
+        state: present
+
+    - name: starship
+      community.general.pacman:
+        name: starship
+        state: present
+
+    - name: wmenu
+      community.general.pacman:
+        name: wmenu
+        state: absent
+
+    # - name: doas
+    #   community.general.pacman:
+    #     name: doas
+    #     state: absent
+
+    - name: cifs-utils
+      community.general.pacman:
+        name: cifs-utils
+        state: present
+
+    - name: eza
+      community.general.pacman:
+        name: eza
+        state: present
+
+    - name: dotnet-sdk
+      community.general.pacman:
+        name: dotnet-sdk
+        state: present
+
+    - name: fuzzel
+      community.general.pacman:
+        name: fuzzel
+        state: present
+
+    - name: freerdp
+      community.general.pacman:
+        name: freerdp
+        state: present
+
+    - name: fd
+      community.general.pacman:
+        name: fd
+        state: present
+
+    - name: bitwarden-cli
+      community.general.pacman:
+        name: bitwarden-cli
+        state: present
+
+    - name: bat
+      community.general.pacman:
+        name: bat
+        state: present
+
+    - name: bluez
+      community.general.pacman:
+        name: bluez
+        state: present
+
+    - name: bluez-utils
+      community.general.pacman:
+        name: bluez-utils
+        state: present
+
+    - name: bottom
+      community.general.pacman:
+        name: bottom
+        state: present
+
+    - name: cronie
+      community.general.pacman:
+        name: cronie
+        state: present
+
+    - name: docker
+      community.general.pacman:
+        name: docker
+        state: present
+
+    - name: docker-compose
+      community.general.pacman:
+        name: docker-compose
+        state: present
+
+    - name: github-cli
+      community.general.pacman:
+        name: github-cli
+        state: present
+
+    - name: man-db
+      community.general.pacman:
+        name: man-db
+        state: present
+
+    - name: net-tools
+      community.general.pacman:
+        name: net-tools
+        state: present
+
+    - name: noto-fonts
+      community.general.pacman:
+        name: noto-fonts
+        state: present
+
+    - name: hyprland
+      community.general.pacman:
+        name: hyprland
+        state: present
+
+    - name: hyprpaper
+      community.general.pacman:
+        name: hyprpaper
+        state: present
+
+    - name: jq
+      community.general.pacman:
+        name: jq
+        state: present
+
+    - name: kitty
+      community.general.pacman:
+        name: kitty
+        state: present
+
+    - name: ntp
+      community.general.pacman:
+        name: ntp
+        state: present
+
+    - name: openfortivpn
+      community.general.pacman:
+        name: openfortivpn
+        state: present
+
+    - name: poppler
+      community.general.pacman:
+        name: poppler
+        state: present
+
+    - name: ripgrep
+      community.general.pacman:
+        name: ripgrep
+        state: present
+
+    - name: slurp
+      community.general.pacman:
+        name: slurp
+        state: present
+
+    - name: waybar
+      community.general.pacman:
+        name: waybar
+        state: present
+
+    - name: vivid
+      community.general.pacman:
+        name: vivid
+        state: present
+
+    - name: ufw
+      community.general.pacman:
+        name: ufw
+        state: present
+
+    - name: unarchiver
+      community.general.pacman:
+        name: unarchiver
+        state: present
+
+    - name: tealdeer
+      community.general.pacman:
+        name: tealdeer
+        state: present
+
+    - name: zoxide
+      community.general.pacman:
+        name: zoxide
+        state: present
+
+    - name: yazi
+      community.general.pacman:
+        name: yazi
+        state: present
+
+    - name: yarn
+      community.general.pacman:
+        name: yarn
+        state: present
+
+    - name: yq
+      community.general.pacman:
+        name: yq
+        state: present
+
+    - name: xfce4-settings
+      community.general.pacman:
+        name: xfce4-settings
+        state: present
+
+    - name: wl-clipboard
+      community.general.pacman:
+        name: wl-clipboard
+        state: present
+
+    - name: wget
+      community.general.pacman:
+        name: wget
+        state: present
+
+    - name: atuin
+      community.general.pacman:
+        name: atuin
+        state: present
+
+    - name: pipewire-pulse
+      community.general.pacman:
+        name: atuin
+        state: present
+
+    - name: sudo
+      community.general.pacman:
+        name: sudo
+        state: present
+
+    - name: grim
+      community.general.pacman:
+        name: grim
+        state: present
+
+    # - name: inetutils
+    #   community.general.pacman:
+    #     name: inetutils
+    #     state: present
+
+    # - name: lxappearance
+    #   community.general.pacman:
+    #     name: lxappearance
+    #     state: present
+
+    - name: wireplumber
+      community.general.pacman:
+        name: wireplumber
+        state: present
+
+    - name: fish
+      community.general.pacman:
+        name: fish
+        state: present
+
+    - name: yadm
+      community.general.pacman:
+        name: yadm
+        state: present
+
+    - name: rust
+      community.general.pacman:
+        name: rust
+        state: present
+
+    - name: ttyper
+      community.general.pacman:
+        name: ttyper
+        state: present

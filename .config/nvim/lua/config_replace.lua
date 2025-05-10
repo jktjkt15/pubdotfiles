@@ -195,7 +195,7 @@ function _G.__JayYankEndOfLine(motion)
 
 	local endOfLine = vim.api.nvim_buf_get_text(0, pos[2] - 1, pos[3] - 1, pos[2] - 1, -1, {})
 
-	vim.fn.setreg("+", endOfLine)
+	vim.fn.setreg("+", endOfLine[1])
 
 	restoreSavedSpot()
 end

@@ -1,0 +1,6 @@
+- name: Cargo
+  hosts: myhosts
+  tasks:
+    - name: trashy
+      community.general.cargo:
+        name: trashy

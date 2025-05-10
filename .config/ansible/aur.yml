@@ -1,0 +1,74 @@
+- name: AUR
+  hosts: myhosts
+  tasks:
+    - name: expressvpn
+      community.general.pacman:
+        name: expressvpn
+        state: present
+        executable: yay
+
+    # - name: remmina-git
+    #   community.general.pacman:
+    #     name: remmina-git
+    #     state: present
+    #     executable: yay
+
+    - name: dracula-gtk-theme
+      community.general.pacman:
+        name: dracula-gtk-theme
+        state: present
+        executable: yay
+
+    - name: dracula-icons-git
+      community.general.pacman:
+        name: dracula-icons-git
+        state: present
+        executable: yay
+
+    - name: swaylock-effects-git
+      community.general.pacman:
+        name: swaylock-effects-git
+        state: present
+        executable: yay
+
+    - name: powershell-bin
+      community.general.pacman:
+        name: powershell-bin
+        state: present
+        executable: yay
+
+    - name: jqp-bin
+      community.general.pacman:
+        name: jqp-bin
+        state: present
+        executable: yay
+
+    - name: bluetuith
+      community.general.pacman:
+        name: bluetuith
+        state: present
+        executable: yay
+
+    - name: pet-git
+      community.general.pacman:
+        name: pet-git
+        state: present
+        executable: yay
+
+    - name: tree-sitter-cli
+      community.general.pacman:
+        name: tree-sitter-cli
+        state: present
+        executable: yay
+
+    - name: tera
+      community.general.pacman:
+        name: tera
+        state: present
+        executable: yay
+
+    # - name: xdg-desktop-portal-hyperland-git
+    #   community.general.pacman:
+    #     name: xdg-desktop-portal-hyperland-git
+    #     state: present
+    #     executable: yay
