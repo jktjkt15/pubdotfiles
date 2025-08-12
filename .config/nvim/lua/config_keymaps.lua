@@ -1,5 +1,9 @@
 -- Save
 vim.keymap.set("n", "<leader>w", ":silent w<CR>")
+vim.keymap.set("i", "<C-i>a", "<C-K>a`")
+vim.keymap.set("i", "<C-i>ea", "<C-K>e'")
+vim.keymap.set("i", "<C-i>eg", "<C-K>e`")
+vim.keymap.set("i", "<C-i>et", "<C-K>e:")
 
 vim.keymap.set({ "n", "v" }, "l", "k")
 vim.keymap.set({ "n", "v" }, "h", "j")

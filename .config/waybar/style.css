@@ -3,6 +3,10 @@
   border-radius: 0px;
   font-family: "CaskaydiaMono Nerd Font Mono", "Sarasa", "Font Awesome 6 Free";
   font-size: 17px;
+  /* font-size: 16px; */
+  /* min-height: 26px; */
+  font-size: 17px;
+  /* font-size: 12px; */
   font-weight: bold;
 }
 
@@ -32,6 +36,28 @@ window#waybar {
   /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.8); */
   /* box-shadow: 2px 2px 2px 1px #5a84e5 */
 
+  /* background-color: rgba(31, 34, 40, 0.8); */
+  /* background-color: #5a84e5; */
+  /* transition-property: background-color; */
+  /* transition-duration: 0.5s; */
+  /* padding: 0px 0px 100px 0px; */
+  /* margin: 0px 0px 10px 0px; */
+  border-width: 2px;
+  border-radius: 20px;
+  /* border-style: dashed; */
+  border-color: rgba(90, 132, 229, 0.5);
+  background: linear-gradient(
+    90deg,
+    rgba(90, 132, 229, 0.5) 0%,
+    rgba(40, 40, 40, 0.2) 50%,
+    rgba(90, 132, 229, 0.5) 100%
+  );
+  border-style: solid;
+  /* margin: 20px 20px 20px 20px; */
+  /* padding: 20px 20px 20px 20px; */
+  /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.8); */
+  /* box-shadow: 2px 2px 2px 1px #5a84e5 */
+}
 
 #workspaces {
   /* margin-top: 2px; */
@@ -91,9 +117,11 @@ window#waybar {
 #custom-slack,
 #custom-homevpn,
 #custom-wgvpn,
+#custom-pacman,
 #custom-volume,
 #custom-disk,
 #custom-clock,
+#custom-temp,
 #clock {
   margin-bottom: 15px;
   margin-top: 15px;
@@ -113,7 +141,6 @@ window#waybar {
 #clock,
 #custom-clock,
 #custom-slack,
-#custom-clock,
 #custom-homevpn,
 #custom-wgvpn,
 #custom-workvpn {

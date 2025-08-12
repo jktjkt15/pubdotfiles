@@ -101,8 +101,8 @@ end
 local function getSubRepos(co, cb)
 	local pattern = M.GetSolutionPattern()
 
-	if vim.g.jay_pattern ~= nil then
-		pattern = vim.g.jay_pattern
+	if vim.g.jay_project_pattern ~= nil then
+		pattern = vim.g.jay_project_pattern
 	end
 
 	local fdCmd = { "fd", pattern, "-t", "f" }

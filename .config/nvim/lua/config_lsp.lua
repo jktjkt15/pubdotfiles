@@ -31,6 +31,7 @@ require("mason-lspconfig").setup({
 		"lemminx",
 		"yamlls",
 		"pyright",
+		"zls",
 	},
 })
 
@@ -150,6 +151,16 @@ require("lspconfig").terraformls.setup({
 vim.lsp.config("powershell_es", {
 	bundle_path = vim.fn.expand("$MASON/packages/powershell-editor-services"),
 })
+
+require("lspconfig").zls.setup({
+	capabilities = capabilities,
+})
+
+require("lspconfig").roc_ls.setup({
+	capabilities = capabilities,
+})
+
+vim.filetype.add({ extension = { roc = "roc" } })
 
 require("lspconfig").dockerls.setup({
 	capabilities = capabilities,

@@ -7,6 +7,7 @@ if status is-interactive
     set -gx ATUIN_NOBIND true
     set -Ux FZF_DEFAULT_OPTS "--color=fg:#f2f3f3,hl:#ffb65b,fg+:#f2f3f3,bg+:#353b45,hl+:#ffb65b,info:#61afef,prompt:#5a84e5,pointer:#f3f383,marker:#62ea76,spinner:#8c62e0,header:#353b45"
     set -Ux LS_COLORS (vivid generate ~/.config/vivid/jayzone.yml)
+    set -Ux ELECTRON_OZONE_PLATFORM_HINT wayland
 
     fish_add_path ~/.local/share/bob/nvim-bin
     fish_add_path ~/.ghcup/bin
@@ -61,6 +62,11 @@ if status is-interactive
     alias yu='yay -Syu --needed'
     alias k='kubectl'
     alias p='~/repos/scripts/run.fish'
+
+    function mcd
+        mkdir -p $argv[1]
+        cd $argv[1]
+    end
 
     function mcd
         mkdir -p $argv[1]

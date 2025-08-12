@@ -1,3 +1,18 @@
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+-- 	pattern = { "*.roc" },
+-- 	command = "set filetype=roc",
+-- })
+--
+-- -- add roc tree-sitter
+-- local parsers = require("nvim-treesitter.parsers").get_parser_configs()
+--
+-- parsers.roc = {
+-- 	install_info = {
+-- 		url = "https://github.com/faldor20/tree-sitter-roc",
+-- 		files = { "src/parser.c", "src/scanner.c" },
+-- 	},
+-- }
+
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"javascript",
@@ -31,6 +46,7 @@ require("nvim-treesitter.configs").setup({
 		"bash",
 		"fish",
 		"templ",
+		-- "roc",
 	},
 	incremental_selection = {
 		enable = true,
@@ -158,3 +174,5 @@ vim.treesitter.language.register("hcl", { "tf", "terraform" })
 -- 	},
 -- 	filetype = "fsharp",
 -- }
+
+-- make .roc files have the correct filetype

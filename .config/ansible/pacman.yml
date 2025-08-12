@@ -290,3 +290,23 @@
       community.general.pacman:
         name: ttyper
         state: present
+
+    - name: pacman-contrib
+      community.general.pacman:
+        name: pacman-contrib
+        state: present
+
+    - name: powertop
+      community.general.pacman:
+        name: powertop
+        state: present
+
+    - name: pwgen
+      community.general.pacman:
+        name: pwgen
+        state: present
+
+    - name: zig
+      community.general.pacman:
+        name: zig
+        state: present

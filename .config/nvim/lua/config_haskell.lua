@@ -5,7 +5,15 @@
 -- 		end,
 -- 	},
 -- }
---
+
+vim.g.haskell_tools = {
+	tools = { -- haskell-tools options
+		log = {
+			-- level = vim.log.levels.DEBUG,
+		},
+	},
+}
+
 local tools = require("haskell-tools")
 -- --
 -- -- vim.api.nvim_create_autocmd("BufWritePre", {

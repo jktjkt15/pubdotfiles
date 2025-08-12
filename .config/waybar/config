@@ -22,15 +22,15 @@
         "hyprland/window",
     ],
     "modules-right": [
+        "custom/temp",
         "custom/workvpn",
         "custom/homevpn",
         //"custom/wgvpn",
+        "custom/pacman",
         "custom/audioname",
         "custom/volume",
         "cpu",
         "memory",
-        "custom/disk",
-        "custom/hostname",
         "custom/clock" //,
         //"tray"
     ],
@@ -189,5 +189,15 @@
         "format": "vol: {}",
         "interval": 30,
         "exec": "fish ~/repos/scripts/get_volume.fish",
+    },
+    "custom/temp": {
+        "format": "temp: {}",
+        "interval": 2,
+        "exec": "fish ~/repos/scripts/temp.fish",
+    },
+    "custom/pacman": {
+        "format": "{}",
+        "interval": 240,
+        "exec": "fish ~/repos/scripts/pacmanupdates.fish",
     }
 }
