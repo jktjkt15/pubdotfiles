@@ -1,0 +1,56 @@
+
+[[Snippets]]
+  Description = "List all files in the current directory"
+  Filename = "~/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "ls"
+
+[[Snippets]]
+  Description = "Write iso to usb device"
+  Filename = "~/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "dd if=./Downloads/<nameiso>.iso of=/dev/<device> bs=1M status=progress"
+
+[[Snippets]]
+  Description = "Open snippet file with pet"
+  Filename = "~/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "nvim ~/.config/pet/snippet.toml"
+
+[[Snippets]]
+  Description = "Run ansible"
+  Filename = "~/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "sudo ansible-playbook -i ~/.config/ansible/inventory.ini ~/.config/ansible/pacman.yml"
+
+[[Snippets]]
+  Description = "Open ansible pacman"
+  Filename = "~/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "nvim ~/.config/ansible/pacman.yml"
+
+[[Snippets]]
+  Description = "Generate password and save it in the clipboard"
+  Filename = "~/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "pwgen -ysc <length> | head -n 1 | wl-copy"
+
+[[Snippets]]
+  Description = "Connect to work vpn"
+  Filename = "~/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "~/repos/scripts/vpn.fish"
+
+[[Snippets]]
+  Description = "Take a screenshot"
+  Filename = "~/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "~/repos/scripts/screenshot.fish"
