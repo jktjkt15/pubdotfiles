@@ -60,6 +60,12 @@ if status is-interactive
     alias pu='sudo pacman -Syu --needed'
     alias yu='yay -Syu --needed'
     alias k='kubectl'
+    alias p='~/repos/scripts/run.fish'
+
+    function mcd
+        mkdir -p $argv[1]
+        cd $argv[1]
+    end
 
     eval "$(ssh-agent -c)" >/dev/null
     zoxide init fish | source

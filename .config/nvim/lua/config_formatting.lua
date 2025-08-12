@@ -5,14 +5,15 @@ conform.setup({
 	-- Use a sub-list to run only the first available formatter
 	formatters = {
 		custom_csharpier = {
-			command = "dotnet-csharpier",
+			command = "dotnet",
+			-- inherit = false,
 			args = function(self, ctx)
 				local basePath = require("conform.util").root_file({ ".csharpierrc.yaml" })(self, ctx)
 				local configPath = basePath .. "/.csharpierrc.yaml"
 
-				return { "--write-stdout", "--fast", "--config-path", configPath }
+				return { "csharpier", "format", "$FILENAME", "--config-path", configPath }
 			end,
-			stdin = true,
+			stdin = false,
 		},
 		custom_fantomas = {
 			command = "dotnet",
@@ -25,6 +26,7 @@ conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		cs = { "custom_csharpier" },
+		xml = { "custom_csharpier" },
 		fish = { "fish_indent" },
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },
@@ -73,6 +75,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 				if #clients > 0 then
 					local clientName = clients[1].name
 					vim.lsp.buf.format({
+						async = false,
 						bufnr = bufnr,
 						filter = function(client)
 							return client.name == clientName

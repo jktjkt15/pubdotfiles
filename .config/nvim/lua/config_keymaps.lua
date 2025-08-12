@@ -1,6 +1,9 @@
 -- Save
 vim.keymap.set("n", "<leader>w", ":silent w<CR>")
 
+vim.keymap.set({ "n", "v" }, "l", "k")
+vim.keymap.set({ "n", "v" }, "h", "j")
+
 -- Centered Scroll
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

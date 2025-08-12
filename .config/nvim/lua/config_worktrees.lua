@@ -80,6 +80,8 @@ end, { desc = "Find worktrees" })
 local function init()
 	local cwd = vim.uv.cwd()
 
+	vim.cmd("cd " .. cwd)
+
 	getWorktreesAsync(function(wt)
 		if wt == cwd then
 			M.Current = wt
@@ -87,8 +89,8 @@ local function init()
 	end)
 end
 
-vim.defer_fn(function()
-	init()
-end, 5000)
+vim.schedule(function()
+	-- init()
+end)
 
 return M

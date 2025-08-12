@@ -35,7 +35,12 @@ fzflua.setup({
 			},
 		},
 	},
-	fzf_opts = { ["--layout"] = "default", ["--marker"] = "+", ["--cycle"] = "" },
+	fzf_opts = {
+		["--layout"] = "default",
+		["--marker"] = "+",
+		["--cycle"] = "",
+		["--tiebreak"] = "length,begin,index",
+	},
 	winopts = {
 		width = 0.9,
 		height = 0.8,
@@ -194,7 +199,7 @@ local function setContentInSplitWindow(ft, content)
 end
 
 local function splitWindowDoc(method, contentAndFtGetter)
-	pcall(vim.lsp.buf_request, 0, method, vim.lsp.util.make_position_params(), function(err, response)
+	pcall(vim.lsp.buf_request, 0, method, vim.lsp.util.make_position_params(0, "utf-8"), function(err, response)
 		if err ~= nil then
 			vim.notify(err.message)
 			return

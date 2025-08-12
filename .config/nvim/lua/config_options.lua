@@ -40,7 +40,7 @@ vim.opt.scrolloff = 8
 vim.opt.re = 0
 vim.opt.fillchars = "eob: "
 vim.opt.title = true
-vim.opt.titlestring = "Neovim"
+vim.opt.titlestring = "neovim"
 
 vim.opt.diffopt = { "internal", "vertical", "closeoff", "filler" }
 vim.opt.shm:append("I")
@@ -55,3 +55,10 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 
 vim.opt.shell = "fish"
 vim.opt.guicursor = "n-v-c-sm:block-nCursor,i-ci-ve:ver25,r-cr-o:hor20"
+vim.diagnostic.config({
+	virtual_text = { true },
+	virtual_lines = { current_line = true },
+	signs = true,
+	underline = true,
+})
+vim.lsp.inlay_hint.enable(false)

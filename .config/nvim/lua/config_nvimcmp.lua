@@ -42,7 +42,7 @@ local lspSpecs = {
 	[3] = { name = "Function", priority = 100 },
 	[4] = { name = "Constructor", priority = 10 },
 	[5] = { name = "Field", priority = 100 },
-	[6] = { name = "Variable", priority = 100 },
+	[6] = { name = "Variable", priority = 101 },
 	[7] = { name = "Class", priority = 100 },
 	[8] = { name = "Interface", priority = 100 },
 	[9] = { name = "Module", priority = 80 },
@@ -219,14 +219,16 @@ cmp.setup({
 	},
 	sorting = {
 		comparators = {
-			require("copilot_cmp.comparators").prioritize,
-			customLspSorter,
-			-- cmp.
+			-- require("copilot_cmp.comparators").prioritize,
+			-- customLspSorter,
 			-- cmp.config.compare.kind,
+			-- cmp_buffer.compare_word_distance,
 			cmp.config.compare.offset,
 			cmp.config.compare.exact,
-			cmp.config.compare.score,
+			customLspSorter,
 			cmp.config.compare.recently_used,
+			cmp.config.compare.score,
+			cmp.config.compare.order,
 		},
 	},
 	experimental = {

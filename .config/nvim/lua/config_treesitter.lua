@@ -30,6 +30,7 @@ require("nvim-treesitter.configs").setup({
 		-- "help",
 		"bash",
 		"fish",
+		"templ",
 	},
 	incremental_selection = {
 		enable = true,
@@ -146,6 +147,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 vim.treesitter.language.register("html", "xml")
+-- vim.treesitter.language.register("csproj", "xml")
 vim.treesitter.language.register("hcl", { "tf", "terraform" })
 
 -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()

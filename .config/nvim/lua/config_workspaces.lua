@@ -9,7 +9,7 @@ ws.setup({
 			function()
 				require("config_autoload").load()
 				local name = ws.name()
-				vim.o.titlestring = string.format("%s (Neovim)", name)
+				vim.o.titlestring = string.format("%s (neovim)", name)
 
 				if os.getenv("SSH_TTY") ~= nil then
 					vim.o.titlestring = string.format("(SSH) %s", vim.o.titlestring)
@@ -18,10 +18,6 @@ ws.setup({
 				repos.SetupDefaultProject()
 
 				require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
-				--
-				-- vim.schedule(function()
-				-- 	vim.fn.system({ "pwsh", "-c", string.format("$Host.UI.RawUI.WindowTitle = '%s'", name) })
-				-- end)
 			end,
 		},
 		open_pre = {

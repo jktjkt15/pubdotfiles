@@ -3,7 +3,7 @@ require("flash").setup({
 	labels = "asdfghjklqwertyuiopzxcvbnm",
 	search = {
 		-- search/jump in all windows
-		multi_window = true,
+		multi_window = false,
 		-- search direction
 		forward = true,
 		-- when `false`, find only matches in the given direction
@@ -167,11 +167,11 @@ require("flash").setup({
 				-- opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true):find("o")
 			end,
 			-- hide after jump when not using jump labels
-			autohide = false,
+			autohide = true,
 			-- show jump labels
-			jump_labels = false,
+			jump_labels = true,
 			-- set to `false` to use the current line only
-			multi_line = false,
+			multi_line = true,
 			-- When using jump labels, don't use these keys
 			-- This allows using those keys directly after the motion
 			label = { exclude = "hjkliardc" },

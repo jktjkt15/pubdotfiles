@@ -1,22 +1,25 @@
 {
     "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    //"height": 35, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "height": 80,
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         // "hyprland/workspaces"
-        //"hyprland/mode",
-        //"hyprland/scratchpad",
-        "custom/hostname",
-        "custom/media",
-        "custom/roon",
-        "hyprland/window",
-        "custom/slack",
+    //"hyprland/mode",
+    //"hyprland/scratchpad",
+        "hyprland/workspaces",
+        //"custom/media",
+        //"custom/roon",
+        "custom/slack"
     ],
     "modules-center": [
-        "hyprland/workspaces"
+        "hyprland/window",
     ],
     "modules-right": [
         "custom/workvpn",
@@ -27,6 +30,7 @@
         "cpu",
         "memory",
         "custom/disk",
+        "custom/hostname",
         "custom/clock" //,
         //"tray"
     ],
@@ -38,7 +42,7 @@
         "disable-scroll": true,
         "all-outputs": false,
         "warp-on-scroll": false,
-        "format": " {name}: {icon} ",
+        "format": " {name} ",
         "format-icons": {
             "1": "main",
             "2": "rdp",
@@ -65,15 +69,15 @@
     "clock": {
         "timezone": "Canada/Eastern",
         "interval": 1,
-        "format": "{:%Y-%m-%d %H:%M:%S}",
+        "format": "aaa{:%Y-%m-%d %H:%M:%S}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "format": "cpu: {usage}%"
+        "format": "󱅣 {usage}%"
     },
     "memory": {
-        "format": "ram: {}%"
+        "format": " {}%"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -151,21 +155,6 @@
         "exec": "fish -c 'echo $(whoami)@$hostname'",
         "interval": 3600
     },
-    "custom/media": {
-        "format": " {}",
-        "interval": 10,
-        "max-length": 50,
-        "format-icons": {
-            "spotify": ""
-        },
-        "exec": "fish ~/repos/scripts/spotify_name.fish"
-    },
-    "custom/roon": {
-        "format": "roon: {}",
-        "interval": 20,
-        "max-length": 50,
-        "exec": "npm run --prefix \"~/repos/roon/\" start --silent | awk '{print tolower($0)}'"
-    },
     "custom/workvpn": {
         "format": "{}",
         "interval": 20,
@@ -190,11 +179,6 @@
         "format": "slack: {} message(s)",
         "interval": 20,
         "exec": "fish ~/repos/scripts/slack.fish"
-    },
-    "custom/disk": {
-        "format": "dsk: {}%",
-        "interval": 120,
-        "exec": "fish ~/repos/scripts/disk_space.fish"
     },
     "custom/clock": {
         "format": "{}",

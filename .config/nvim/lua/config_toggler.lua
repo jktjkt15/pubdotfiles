@@ -4,6 +4,7 @@ require("nvim-toggler").setup({
 		["prev"] = "next",
 		["high"] = "low",
 		["fail"] = "pass",
+		["public"] = "internal",
 	},
 	remove_default_keybinds = true,
 	remove_default_inverses = false,

@@ -4,6 +4,11 @@ require("mason").setup({
 	ui = {
 		border = "double",
 	},
+
+	registries = {
+		"github:mason-org/mason-registry",
+		"github:Crashdummyy/mason-registry",
+	},
 })
 
 vim.keymap.set("n", "<leader>i", "<cmd>Inspect<cr>")
@@ -32,9 +37,11 @@ require("mason-lspconfig").setup({
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("lsp_signature").setup({
+	bind = true,
+	doc_lines = 10,
 	hint_enable = true,
 	hint_prefix = "▫️",
-	floating_window = false,
+	floating_window = true,
 	hint_inline = function()
 		return false
 	end,
@@ -135,12 +142,13 @@ require("lspconfig").terraformls.setup({
 	capabilities = capabilities,
 })
 
-require("lspconfig").powershell_es.setup({
-	capabilities = capabilities,
-	on_attach = function(client)
-		-- client.server_capabilities.semanticTokensProvider = {}
-		-- print("testesete")
-	end,
+-- require("lspconfig").powershell_es.setup({
+-- 	capabilities = capabilities,
+--     command = vim.fn.expand "$MASON/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1"
+-- })
+
+vim.lsp.config("powershell_es", {
+	bundle_path = vim.fn.expand("$MASON/packages/powershell-editor-services"),
 })
 
 require("lspconfig").dockerls.setup({

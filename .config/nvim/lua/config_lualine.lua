@@ -165,7 +165,7 @@ require("lualine").setup({
 						return ""
 					end
 
-					return "  " .. result
+					return " " .. string.lower(result)
 				end,
 			},
 			{
@@ -176,7 +176,18 @@ require("lualine").setup({
 						return ""
 					end
 
-					return "  " .. result
+					return " " .. string.lower(result)
+				end,
+			},
+			{
+				function()
+					local result = require("config_monorepo").GetCurrentSubProject()
+
+					if result == "" then
+						return ""
+					end
+
+					return "  " .. string.lower(result)
 				end,
 			},
 		},

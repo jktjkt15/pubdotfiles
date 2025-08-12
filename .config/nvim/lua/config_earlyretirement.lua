@@ -1,6 +1,6 @@
 require("early-retirement").setup({
 	-- If a buffer has been inactive for this many minutes, close it.
-	retirementAgeMins = 20,
+	retirementAgeMins = 30,
 
 	-- Filetypes to ignore.
 	ignoredFiletypes = {},
