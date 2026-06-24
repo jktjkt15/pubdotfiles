@@ -1,4 +1,4 @@
-sudo pacman -Syu --needed --noconfirm fish base-devel unzip starship
+sudo pacman -Syu --needed --noconfirm git fish base-devel unzip starship
 
 mkdir -p ~/.config
 cd ~/.config
@@ -15,7 +15,7 @@ yay -Syu --needed --answerclean None --answerdiff None --cleanafter --removemake
 
 cargo install trashy
 
-sudo pacman -Syu --needed aria2 bat bottom cifs-utils cronie docker docker-compose dotnet-sdk eza fd freerdp fuzzel fzf gimp git-delta github-cli gnustep-base gnustep-make grim hyprland hyprpaper jq kitty linux-headers mako man-db ntp obs-studio otf-font-awesome poppler ripgrep rsync signal-desktop slurp sshfs starship tealdeer ttf-cascadia-mono-nerd unarchiver v4l2loopback-dkms vivid waybar wget whois wl-clipboard xfce4-settings xh yarn yazi wq zoxide 
+sudo pacman -Syu --needed aria2 bat bottom cifs-utils cronie docker docker-compose dotnet-sdk eza fd freerdp fuzzel fzf gimp git-delta github-cli gnustep-base gnustep-make grim hyprland hyprpaper jq kitty linux-headers mako man-db ntp obs-studio otf-font-awesome poppler ripgrep rsync signal-desktop slurp sshfs starship tealdeer ttf-cascadia-mono-nerd unarchiver v4l2loopback-dkms vivid waybar wget whois wl-clipboard xfce4-settings xh yarn yazi zoxide 
 
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 cd ~/.config/fish
