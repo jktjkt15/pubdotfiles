@@ -1,6 +1,11 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+#:schema https://yazi-rs.github.io/schemas/yazi.json
+
+# [[mgr.prepend_keymap]]
+# on = [ "h" ]
+# # run = '~/repos/scripts/music_queue.sh "$0"'
+# run = 'notify-send "abc"'
 
 [mgr]
 
@@ -31,7 +36,7 @@ keymap = [
 	{ on = [ "<PageUp>" ],     run = "arrow -100%", desc = "Move cursor up one page" },
 	{ on = [ "<PageDown>" ],   run = "arrow 100%",  desc = "Move cursor down one page" },
 
-	{ on = [ "h" ], run = "leave", desc = "Go back to the parent directory" },
+	{ on = [ "h" ], run = ['''shell -- ~/repos/scripts/music_queue.sh "%s"''', "escape --select"], desc = "Go back to the parent directory" },
 	{ on = [ "l" ], run = "enter", desc = "Enter the child directory" },
 
 	{ on = [ "H" ], run = "back",    desc = "Go back to the previous directory" },
@@ -42,8 +47,8 @@ keymap = [
 	{ on = [ "<A-PageUp>" ],   run = "seek -5", desc = "Seek up 5 units in the preview" },
 	{ on = [ "<A-PageDown>" ], run = "seek 5",  desc = "Seek down 5 units in the preview" },
 
-	{ on = [ "<Up>" ],    run = "arrow -1", desc = "Move cursor up" },
-	{ on = [ "<Down>" ],  run = "arrow 1",  desc = "Move cursor down" },
+	{ on = [ "<Up>" ],    run = "arrow prev", desc = "Move cursor up" },
+	{ on = [ "<Down>" ],  run = "arrow next",  desc = "Move cursor down" },
 	{ on = [ "<Left>" ],  run = "leave",    desc = "Go back to the parent directory" },
 	{ on = [ "<Right>" ], run = "enter",    desc = "Enter the child directory" },
 	{ on = [ "<Enter>" ], run = "enter",    desc = "Enter the child directory" },
@@ -52,7 +57,7 @@ keymap = [
 	{ on = [ "G" ],      run = "arrow bot",  desc = "Move cursor to the bottom" },
 
 	# Selection
-	{ on = [ "<Space>" ], run = [ "select --state=none", "arrow 1" ], desc = "Toggle the current selection state" },
+	{ on = [ "<Space>" ], run = [ "toggle", "arrow 1" ], desc = "Toggle the current selection state" },
 	{ on = [ "v" ],       run = "visual_mode",                        desc = "Enter visual mode (selection mode)" },
 	{ on = [ "V" ],       run = "visual_mode --unset",                desc = "Enter visual mode (unset mode)" },
 	{ on = [ "<C-a>" ],   run = "select_all --state=true",            desc = "Select all files" },
@@ -142,6 +147,7 @@ keymap = [
 
 	# Goto
 	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go to the home directory" },
+	{ on = [ "g", "m" ],       run = "cd ~/Music",             desc = "Go to the music directory" },
 	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go to the config directory" },
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go to the downloads directory" },
 	{ on = [ "g", "t" ],       run = "cd /tmp",          desc = "Go to the temporary directory" },

@@ -178,7 +178,7 @@ local function getSubFolders(co, fzf_cb, folders)
 				for _, value in ipairs(items) do
 					local filteredName = value
 
-					if currentSubProject ~= allProjects then
+					if currentSubProject ~= allProjects and currentSubProject ~= "." then
 						for _, p in pairs(subProjectParts) do
 							filteredName = filteredName:gsub(p .. "/", "", 1)
 						end
@@ -187,7 +187,7 @@ local function getSubFolders(co, fzf_cb, folders)
 					if currentSubRepo ~= allRepos and currentSubRepo ~= "." then
 						for _, p in pairs(subRepoParts) do
 							filteredName = filteredName:gsub(p .. "/", "", 1)
-							filteredName = filteredName:gsub(p .. "/", "", 1)
+							-- filteredName = filteredName:gsub(p .. "/", "", 1)
 						end
 					end
 

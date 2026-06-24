@@ -1,6 +1,6 @@
 require("nvim-toggler").setup({
 	inverses = {
-		["vim"] = "emacs",
+		-- ["vim"] = "emacs",
 		["prev"] = "next",
 		["high"] = "low",
 		["fail"] = "pass",

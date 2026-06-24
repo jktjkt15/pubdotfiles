@@ -223,10 +223,10 @@ bars = 0
 # You can define as many as 8 different colors. They range from bottom to top of screen
 gradient = 1
 gradient_count = 4
-gradient_color_1 = '#5a84e5'
-gradient_color_2 = '#61afef'
-gradient_color_3 = '#8c62e0'
-gradient_color_4 = '#c2a4ff'
+gradient_color_1 = '#7a88bd'
+gradient_color_2 = '#b4d2f0'
+gradient_color_3 = '#c2a4ff'
+gradient_color_4 = '#88d4c1'
 # gradient_color_5 = '#cca633'
 # gradient_color_6 = '#cc8033'
 # gradient_color_7 = '#cc5933'

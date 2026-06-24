@@ -1,0 +1,17 @@
+/**
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ * 
+ * Fonts
+ *
+ **/
+
+* {
+    font: "JetBrains Nerd Font Mono 13";
+    // weight: bold;
+    // font: "Iosevka Nerd Font 12";
+    // font-family: "CaskaydiaMono Nerd Font Mono", "Sarasa", "Font Awesome 6 Free";
+    // font: 50px;
+    // font-size: 16px
+}

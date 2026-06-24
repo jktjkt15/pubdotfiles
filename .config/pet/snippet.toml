@@ -42,15 +42,15 @@
   command = "pwgen -ysc <length> | head -n 1 | wl-copy"
 
 [[Snippets]]
-  Description = "Connect to work vpn"
-  Filename = "~/.config/pet/snippet.toml"
-  Output = ""
-  Tag = []
-  command = "~/repos/scripts/vpn.fish"
-
-[[Snippets]]
   Description = "Take a screenshot"
   Filename = "~/.config/pet/snippet.toml"
   Output = ""
   Tag = []
   command = "~/repos/scripts/screenshot.fish"
+
+[[Snippets]]
+  Description = "How long to beat"
+  Filename = "~/.config/pet/snippet.toml"
+  Output = ""
+  Tag = []
+  command = "~/repos/howlongtobeat/howlong.sh"

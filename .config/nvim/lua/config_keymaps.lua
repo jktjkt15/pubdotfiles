@@ -5,6 +5,10 @@ vim.keymap.set("i", "<C-i>ea", "<C-K>e'")
 vim.keymap.set("i", "<C-i>eg", "<C-K>e`")
 vim.keymap.set("i", "<C-i>et", "<C-K>e:")
 
+-- Move lines
+vim.keymap.set("v", "k", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "j", ":m '<-2<CR>gv=gv")
+
 vim.keymap.set({ "n", "v" }, "l", "k")
 vim.keymap.set({ "n", "v" }, "h", "j")
 
@@ -213,3 +217,4 @@ local function OpenUrl()
 end
 
 vim.keymap.set("v", "gx", OpenUrl)
+vim.keymap.set("n", "<leader>tr", ":res15<CR>", { desc = "resize to 15" })

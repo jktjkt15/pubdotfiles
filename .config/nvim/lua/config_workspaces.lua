@@ -48,6 +48,10 @@ local lastWorkspaces = ws.get()
 if firstLoad and lastWorkspaces ~= nil and lastWorkspaces[1] ~= nil and lastWorkspaces[1].name ~= nil then
 	firstLoad = false
 
+	if vim.env.KITTY_SCROLLBACK_NVIM == "true" then
+		return
+	end
+
 	if vim.v.argv[3] == "project" and #vim.v.argv > 3 then
 		local targetProject = vim.v.argv[4]
 		vim.schedule(function()

@@ -1,6 +1,8 @@
 local fzflua = require("fzf-lua")
 local actions = require("fzf-lua.actions")
 
+fzflua.register_ui_select()
+
 fzflua.setup({
 	buffers = {
 		file_icons = true,
@@ -102,6 +104,13 @@ end)
 
 vim.keymap.set("n", "<leader>fcc", function()
 	fzflua.files({ cwd = buffer_dir(), winopts = { preview = { layout = "horizontal" } } })
+end)
+
+vim.keymap.set("n", "<leader>f.", function()
+	fzflua.files({
+		fd_opts = "--color=always -t f . -IH --exclude obj --exclude bin --exclude .git",
+		winopts = { preview = { layout = "horizontal" } },
+	})
 end)
 
 -- vim.keymap.set("n", "<leader>ff", function()
@@ -395,43 +404,6 @@ local function range_from_selection(bufnr, mode)
 end
 
 vim.keymap.set({ "n", "x" }, "<leader>ca", function()
-	-- splitWindowDoc("textDocument/codeAction", function(response)
-	-- 	print(vim.inspect(response))
-	-- 	return true, "etn"
-	-- end)
-	--
-	-- local action = "textDocument/codeAction"
-	-- local client = vim.lsp.get_clients({ bufnr = 0, method = action })[1]
-	-- local context = {}
-	-- local params
-	-- -- params = vim.lsp.util.make_range_params(0, client.offset_encoding)
-	-- -- print(vim.inspect(params))
-	--
-	-- local range = range_from_selection(0, "V")
-	-- params = vim.lsp.util.make_given_range_params(range.start, range["end"], 0, client.offset_encoding)
-	-- params.context = context
-	--
-	-- if not context.triggerKind then
-	-- 	context.triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Invoked
-	-- end
-	--
-	-- if not context.diagnostics then
-	-- 	local bufnr = vim.api.nvim_get_current_buf()
-	-- 	-- context.diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr)
-	-- end
-	--
-	-- pcall(vim.lsp.buf_request, 0, "textDocument/codeAction", params, function(err, response)
-	-- 	if err ~= nil then
-	-- 		print(vim.inspect(err))
-	-- 		-- vim.notify(err.message)
-	-- 		return
-	-- 	end
-	--
-	-- 	print(vim.inspect(response))
-	-- end)
-
-	-- vim.lsp.buf.code_action(opts?)
-	-- local t = ""
 	fzflua.lsp_code_actions()
 end)
 

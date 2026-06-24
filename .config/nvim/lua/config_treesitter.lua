@@ -13,166 +13,273 @@
 -- 	},
 -- }
 
-require("nvim-treesitter.configs").setup({
-	ensure_installed = {
-		"javascript",
-		"typescript",
-		"hyprlang",
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"bash",
 		"c_sharp",
-		-- "f_sharp",
-		"elixir",
-		"yaml",
-		"lua",
-		"latex",
-		"sql",
-		"vim",
-		"go",
-		"proto",
-		"latex",
-		"python",
-		"json",
-		"haskell",
-		"markdown",
-		"markdown_inline",
-		"hcl",
-		"query",
-		-- "rust",
-		"html",
 		"dockerfile",
+		-- "elixir",
+		"fish",
+		"fsharp",
 		"gitcommit",
 		"gitignore",
 		"git_rebase",
-		-- "help",
-		"bash",
-		"fish",
-		"templ",
-		-- "roc",
+		"go",
+		"haskell",
+		"hcl",
+		"html",
+		"hyprlang",
+		"javascript",
+		"json",
+		"lua",
+		"markdown",
+		"markdown_inline",
+        "odin",
+		-- "proto",
+		"python",
+		"query",
+		"razor",
+		"sql",
+        "ocaml",
+		-- "templ",
+		"typescript",
+		"vim",
+		"yaml",
+        "zig"
 	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "grn",
-			scope_incremental = "grc",
-			node_decremental = "grm",
-		},
-	},
-	highlight = {
-		enable = true,
-	},
-	indent = {
-		enable = false, -- experimental
-	},
-	textobjects = {
-		select = {
-			enable = true,
-
-			-- Automatically jump forward to textobj, similar to targets.vim
-			lookahead = true,
-
-			keymaps = {
-				-- You can use the capture groups defined in textobjects.scm
-				-- ["ab"] = "@block.outer",
-				-- ["ib"] = "@block.inner",
-				["ap"] = "@parameter.outer",
-				["ip"] = "@parameter.inner",
-				["ai"] = "@call.outer",
-				["ii"] = "@call.inner",
-				["al"] = "@loop.outer",
-				["il"] = "@loop.inner",
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-				["ab"] = "@object",
-			},
-			-- You can choose the select mode (default is charwise 'v')
-			selection_modes = {
-				-- ["@parameter.outer"] = "v", -- charwise
-				-- ["@function.outer"] = "V", -- linewise
-				-- ["@class.outer"] = "<c-v>", -- blockwise
-			},
-			-- If you set this to `true` (default is `false`) then any textobject is
-			-- extended to include preceding xor succeeding whitespace. Succeeding
-			-- whitespace has priority in order to act similarly to eg the built-in
-			-- `ap`.
-			include_surrounding_whitespace = false,
-		},
-		move = {
-			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				["jf"] = "@function.outer",
-				["jc"] = "@class.outer",
-				["jp"] = "@parameter.inner",
-				["jb"] = "@object",
-			},
-			goto_next_end = {
-				["jef"] = "@function.outer",
-				["jec"] = "@class.outer",
-				["jep"] = "@parameter.inner",
-				["jeb"] = "@object",
-			},
-			goto_previous_start = {
-				["jF"] = "@function.outer",
-				["jC"] = "@class.outer",
-				["jB"] = "@object",
-			},
-			goto_previous_end = {
-				["jgF"] = "@function.outer",
-				["jgC"] = "@class.outer",
-				["jgP"] = "@parameter.inner",
-				["jgB"] = "@object",
-			},
-		},
-	},
-	-- rainbow = {
-	-- 	enable = true,
-	-- 	query = "rainbow-parens",
-	-- 	strategy = require("ts-rainbow").strategy.global,
-	-- 	hlgroups = {
-	-- 		-- "TSRainbowYellow",
-	-- 		"TSRainbowViolet",
-	-- 		-- "TSRainbowCyan",
-	-- 		-- "TSRainbowRed",
-	-- 		"TSRainbowBlue",
-	-- 		"TSRainbowYellow",
-	-- 		"TSRainbowCyan",
-	-- 		"TSRainbowRed",
-	-- 		"TSRainbowOrange",
-	-- 	},
-	-- },
-	playground = {
-		enable = true,
-		disable = {},
-		updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-		persist_queries = false, -- Whether the query persists across vim sessions
-		keybindings = {
-			toggle_query_editor = "o",
-			toggle_hl_groups = "i",
-			toggle_injected_languages = "t",
-			toggle_anonymous_nodes = "a",
-			toggle_language_display = "I",
-			focus_language = "f",
-			unfocus_language = "F",
-			update = "R",
-			goto_node = "<cr>",
-			show_help = "?",
-		},
-	},
+	callback = function()
+		vim.treesitter.start()
+	end,
 })
 
-vim.treesitter.language.register("html", "xml")
--- vim.treesitter.language.register("csproj", "xml")
+require("nvim-treesitter").install({
+	"bash",
+	"c_sharp",
+	"dockerfile",
+	-- "elixir",
+	"fish",
+	"fsharp",
+	"gitcommit",
+	"gitignore",
+	"git_rebase",
+	"go",
+	"haskell",
+	"hcl",
+	"html",
+	"hyprlang",
+	"javascript",
+    "ocaml",
+	"json",
+	"lua",
+	"markdown",
+	"markdown_inline",
+    "odin",
+	-- "proto",
+	"python",
+	"query",
+	"razor",
+	"sql",
+	-- "templ",
+	"typescript",
+	"vim",
+	"yaml",
+    "zig"
+})
+
+-- require("nvim-treesitter-textobjects").setup({
+-- 	select = {
+--
+-- 		-- Automatically jump forward to textobj, similar to targets.vim
+-- 		lookahead = true,
+--
+-- 		keymaps = {
+-- 			-- You can use the capture groups defined in textobjects.scm
+-- 			-- ["ab"] = "@block.outer",
+-- 			-- ["ib"] = "@block.inner",
+-- 			["ap"] = "@parameter.outer",
+-- 			["ip"] = "@parameter.inner",
+-- 			["ai"] = "@call.outer",
+-- 			["ii"] = "@call.inner",
+-- 			["al"] = "@loop.outer",
+-- 			["il"] = "@loop.inner",
+-- 			["af"] = "@function.outer",
+-- 			["if"] = "@function.inner",
+-- 			["ac"] = "@class.outer",
+-- 			["ic"] = "@class.inner",
+-- 			["ab"] = "@object",
+-- 		},
+-- 		-- You can choose the select mode (default is charwise 'v')
+-- 		selection_modes = {
+-- 			-- ["@parameter.outer"] = "v", -- charwise
+-- 			-- ["@function.outer"] = "V", -- linewise
+-- 			-- ["@class.outer"] = "<c-v>", -- blockwise
+-- 		},
+-- 		-- If you set this to `true` (default is `false`) then any textobject is
+-- 		-- extended to include preceding xor succeeding whitespace. Succeeding
+-- 		-- whitespace has priority in order to act similarly to eg the built-in
+-- 		-- `ap`.
+-- 		include_surrounding_whitespace = false,
+-- 	},
+-- 	move = {
+-- 		enable = true,
+-- 		set_jumps = true, -- whether to set jumps in the jumplist
+-- 		goto_next_start = {
+-- 			["jf"] = "@function.outer",
+-- 			["jc"] = "@class.outer",
+-- 			["jp"] = "@parameter.inner",
+-- 			["jb"] = "@object",
+-- 		},
+-- 		goto_next_end = {
+-- 			["jef"] = "@function.outer",
+-- 			["jec"] = "@class.outer",
+-- 			["jep"] = "@parameter.inner",
+-- 			["jeb"] = "@object",
+-- 		},
+-- 		goto_previous_start = {
+-- 			["jF"] = "@function.outer",
+-- 			["jC"] = "@class.outer",
+-- 			["jB"] = "@object",
+-- 		},
+-- 		goto_previous_end = {
+-- 			["jgF"] = "@function.outer",
+-- 			["jgC"] = "@class.outer",
+-- 			["jgP"] = "@parameter.inner",
+-- 			["jgB"] = "@object",
+-- 		},
+-- 	},
+-- })
+
+vim.keymap.set({ "x", "o" }, "ap", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@parameter.outer", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "ip", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@parameter.inner", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "af", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "if", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "ac", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "ic", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+end)
+
+-- vim.treesitter.language.register("html", "xml")
 vim.treesitter.language.register("hcl", { "tf", "terraform" })
 
--- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
--- parser_config.fsharp = {
--- 	install_info = {
--- 		url = "C:\\Users\\jcapblancq\\AppData\\Local\\nvim-data\\tree-sitter-fsharp",
--- 		files = { "src/scanner.cc", "src/parser.c" },
--- 	},
--- 	filetype = "fsharp",
--- }
+-- goto_next_start = {
+-- 	["jf"] = "@function.outer",
+-- 	["jc"] = "@class.outer",
+-- 	["jp"] = "@parameter.inner",
+-- 	["jb"] = "@object",
+-- },
+-- goto_next_end = {
+-- 	["jef"] = "@function.outer",
+-- 	["jec"] = "@class.outer",
+-- 	["jep"] = "@parameter.inner",
+-- 	["jeb"] = "@object",
+-- },
+-- goto_previous_start = {
+-- 	["jF"] = "@function.outer",
+-- 	["jC"] = "@class.outer",
+-- 	["jB"] = "@object",
+-- },
+-- goto_previous_end = {
+-- 	["jgF"] = "@function.outer",
+-- 	["jgC"] = "@class.outer",
+-- 	["jgP"] = "@parameter.inner",
+-- 	["jgB"] = "@object",
+-- },
 
--- make .roc files have the correct filetype
+vim.keymap.set({ "n", "x", "o" }, "jf", function()
+	require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "jef", function()
+	require("nvim-treesitter-textobjects.move").goto_next_end("@function.outer", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "jF", function()
+	require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "jc", function()
+	require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "jec", function()
+	require("nvim-treesitter-textobjects.move").goto_next_end("@class.outer", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "jC", function()
+	require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "jp", function()
+	require("nvim-treesitter-textobjects.move").goto_next_start("@parameter.outer", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "jep", function()
+	require("nvim-treesitter-textobjects.move").goto_next_end("@parameter.outer", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "jP", function()
+	require("nvim-treesitter-textobjects.move").goto_previous_start("@parameter.outer", "textobjects")
+end)
+
+-- vim.keymap.set({ "n", "x", "o" }, "]]", function()
+--   require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer", "textobjects")
+-- end)
+-- -- You can also pass a list to group multiple queries.
+-- vim.keymap.set({ "n", "x", "o" }, "]o", function()
+--   require("nvim-treesitter-textobjects.move").goto_next_start({"@loop.inner", "@loop.outer"}, "textobjects")
+-- end)
+-- -- You can also use captures from other query groups like `locals.scm` or `folds.scm`
+-- vim.keymap.set({ "n", "x", "o" }, "]s", function()
+--   require("nvim-treesitter-textobjects.move").goto_next_start("@local.scope", "locals")
+-- end)
+-- vim.keymap.set({ "n", "x", "o" }, "]z", function()
+--   require("nvim-treesitter-textobjects.move").goto_next_start("@fold", "folds")
+-- end)
+--
+-- vim.keymap.set({ "n", "x", "o" }, "]M", function()
+--   require("nvim-treesitter-textobjects.move").goto_next_end("@function.outer", "textobjects")
+-- end)
+-- vim.keymap.set({ "n", "x", "o" }, "][", function()
+--   require("nvim-treesitter-textobjects.move").goto_next_end("@class.outer", "textobjects")
+-- end)
+--
+-- vim.keymap.set({ "n", "x", "o" }, "[m", function()
+--   require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+-- end)
+-- vim.keymap.set({ "n", "x", "o" }, "[[", function()
+--   require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects")
+-- end)
+--
+-- vim.keymap.set({ "n", "x", "o" }, "[M", function()
+--   require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer", "textobjects")
+-- end)
+-- vim.keymap.set({ "n", "x", "o" }, "[]", function()
+--   require("nvim-treesitter-textobjects.move").goto_previous_end("@class.outer", "textobjects")
+-- end)
+--
+-- -- Go to either the start or the end, whichever is closer.
+-- -- Use if you want more granular movements
+-- vim.keymap.set({ "n", "x", "o" }, "]d", function()
+--   require("nvim-treesitter-textobjects.move").goto_next("@conditional.outer", "textobjects")
+-- end)
+-- vim.keymap.set({ "n", "x", "o" }, "[d", function()
+--   require("nvim-treesitter-textobjects.move").goto_previous("@conditional.outer", "textobjects")
+-- end)
+
+-- keymaps
+vim.keymap.set("n", "<leader>a", function()
+	require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
+end)
+vim.keymap.set("n", "<leader>A", function()
+	require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
+end)

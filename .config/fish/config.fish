@@ -2,18 +2,24 @@ if status is-interactive
     set -U fish_greeting
     set -g __fish_git_prompt_show_informative_status 1
     set -g __fish_git_prompt_showupstream verbose
-    set -Ux EDITOR ~/.local/share/bob/nightly/bin/nvim
+    set -Ux EDITOR ~/build/nvim-linux-x86_64/bin/nvim
     set -g GPG_TTY (tty)
     set -gx ATUIN_NOBIND true
-    set -Ux FZF_DEFAULT_OPTS "--color=fg:#f2f3f3,hl:#ffb65b,fg+:#f2f3f3,bg+:#353b45,hl+:#ffb65b,info:#61afef,prompt:#5a84e5,pointer:#f3f383,marker:#62ea76,spinner:#8c62e0,header:#353b45"
-    set -Ux LS_COLORS (vivid generate ~/.config/vivid/jayzone.yml)
+    set -Ux FZF_DEFAULT_OPTS "--color fg:#D8DEE9,hl:#A3BE8C,fg+:#D8DEE9,bg+:#353b45,hl+:#A3BE8C,pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B"
+
+    set -e LS_COLORS #(vivid generate ~/.config/vivid/jayzone.yml)
+    set -Ux LS_COLORS "" #(vivid generate ~/.config/vivid/jayzone.yml)
+    # set -Ux EZA_COLORS="da=2;34:ur=34:uw=95:ux=36:ue=36:gr=34:gw=35:gx=36:tr=34:tw=35:tx=36:xx=95:"
+    set -Ux EZA_CONFIG_DIR ~/.config/eza
+
     set -Ux ELECTRON_OZONE_PLATFORM_HINT wayland
 
-    fish_add_path ~/.local/share/bob/nvim-bin
+    fish_add_path ~/build/nvim-linux-x86_64/bin/
     fish_add_path ~/.ghcup/bin
     fish_add_path ~/.cargo/bin
     fish_add_path ~/.local/bin
     fish_add_path ~/.dotnet/tools
+    fish_add_path ~/.duckdb/cli/latest/
 
     set fzf_fd_opts --hidden
     fzf_configure_bindings --directory=\cf
@@ -49,38 +55,51 @@ if status is-interactive
     alias cat='bat --color=always'
     alias fre='source ~/.config/fish/config.fish'
     alias ev='nvim ~/.config/fish/config.fish'
-    alias gs='git status'
-    alias ge='cd ~/repos/work/'
     # alias y='yazi'
     alias ng="nvim -c 'G' -c 'on'"
-    alias s='spotify_player'
-    alias sp='spotify_player playback'
     alias ce='export EDITOR=nvim && crontab -e'
     alias t="trash"
     alias tp="trash put"
     alias pu='sudo pacman -Syu --needed'
     alias yu='yay -Syu --needed'
-    alias k='kubectl'
+    # alias k='kubectl'
     alias p='~/repos/scripts/run.fish'
+    alias j='just'
+    alias jj='just --list | tail -n +2 | fzf --cycle | xargs -I{} just {}'
+    alias s='pet exec'
+    # alias sa=''
+    alias gm='cd ~/Music/'
+    alias gc='cd ~/.config'
+    alias gh='cd ~/'
+    alias gs='cd ~/repos/scripts/'
+    alias gr='cd ~/repos/'
 
     function mcd
         mkdir -p $argv[1]
         cd $argv[1]
     end
 
-    function mcd
-        mkdir -p $argv[1]
-        cd $argv[1]
+    function gcd
+        git clone $argv[1] $argv[2]
+        cd $argv[2]
     end
 
-    eval "$(ssh-agent -c)" >/dev/null
+    function ts
+        touch $argv[1]
+        chmod +x $argv[1]
+        echo "#! /usr/bin/env bash" >$argv[1]
+    end
+
+    # eval "$(ssh-agent -c)" >/dev/null
+    fish_ssh_agent
     zoxide init fish | source
     atuin init fish | source
     starship init fish | source
     ~/.local/share/env/.env.fish
+    eval (opam env --switch=default)
 
-    bind \ch _atuin_search
-    bind -M insert \ch _atuin_search
-    bind \cs 'pet exec'
-    bind -M insert \cs 'pet exec'
+    # bind \ch _atuin_search
+    # bind -M insert \ch _atuin_search
+    # bind \cs 'pet exec'
+    # bind -M insert \cs 'pet exec'
 end

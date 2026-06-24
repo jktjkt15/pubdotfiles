@@ -50,6 +50,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	pattern = "*",
 	callback = function()
 		vim.opt.formatoptions:remove({ "c", "r", "o" })
+        vim.lsp.inlay_hint.enable(false)
 	end,
 })
 
@@ -61,4 +62,3 @@ vim.diagnostic.config({
 	signs = true,
 	underline = true,
 })
-vim.lsp.inlay_hint.enable(false)

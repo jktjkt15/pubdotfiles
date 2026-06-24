@@ -214,6 +214,7 @@ require("lualine").setup({
 					return string.format("startup: %.1f ms", time)
 				end,
 			},
+            "location",
 			"searchcount",
 			{
 				CurrentWorkspace,

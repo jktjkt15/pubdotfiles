@@ -24,6 +24,6 @@ local tools = require("haskell-tools")
 -- -- 	end,
 -- -- })
 --
-vim.keymap.set({ "n" }, "<localleader>r", function()
-	tools.lsp.buf_eval_all()
-end)
+-- vim.keymap.set({ "n" }, "<localleader>r", function()
+-- 	tools.lsp.buf_eval_all()
+-- end)

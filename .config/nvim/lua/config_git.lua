@@ -18,17 +18,17 @@
 -- vim.api.nvim_create_user_command("Gp", "G pull", {})
 -- vim.api.nvim_create_user_command("Gl", "G log -n 5", {})
 
-vim.keymap.set("n", "<leader>gh", function()
-	local ok, gitSshUri = pcall(vim.fn.system, { "git", "remote", "get-url", "--push", "origin" }, nil)
-
-	if not ok then
-		return
-	end
-
-	local url = gitSshUri:gsub("\n", ""):gsub("git@github.com:", "https://github.com/"):gsub("%.git$", "")
-
-	vim.fn.system({ "brave", url })
-end)
+-- vim.keymap.set("n", "<leader>gh", function()
+-- 	local ok, gitSshUri = pcall(vim.fn.system, { "git", "remote", "get-url", "--push", "origin" }, nil)
+--
+-- 	if not ok then
+-- 		return
+-- 	end
+--
+-- 	local url = gitSshUri:gsub("\n", ""):gsub("git@github.com:", "https://github.com/"):gsub("%.git$", "")
+--
+-- 	vim.fn.system({ "brave", url })
+-- end)
 
 -- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 -- 	pattern = { "fugitive", "fugitiveblame" },

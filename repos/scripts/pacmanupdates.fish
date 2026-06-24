@@ -1,5 +1,5 @@
 #!/bin/fish
 
-set updates (checkupdates | wc -l)
+set updates (checkupdates | wc -l | xargs)
 
-echo "updates: $updates"
+echo -e "󰚰 $updates"
